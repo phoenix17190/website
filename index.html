@@ -6,6 +6,7 @@
 <title>Shashwat Shankar Shrestha | Multimedia Designer, Animator & Front-End Developer — Nepal</title>
 <meta name="description" content="Shashwat Shankar Shrestha is a Kathmandu-based Multimedia Designer, 3D Animator, VFX Artist & Front-End Developer."/>
 <meta name="author" content="Shashwat Shankar Shrestha"/>
+<meta name="keywords" content="Shashwat Shankar Shrestha,Shashwat, Shashwat Nepal, Shashwat Designer"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -263,6 +264,10 @@ footer span{color:var(--cyan)}
 </style>
 </head>
 <body>
+  <h1 style="position:absolute;left:-9999px;">
+Shashwat Shankar Shrestha – Multimedia Designer from Kathmandu Nepal
+</h1>
+  
 
 <!-- 3D BACKGROUND CANVAS -->
 <canvas id="bg-canvas"></canvas>
@@ -463,6 +468,43 @@ footer span{color:var(--cyan)}
     <p>&copy; <span id="yr"></span> <span>Shashwat Shankar Shrestha</span>. Crafted with precision in <span>Kathmandu</span>.</p>
   </div>
 </footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "Who is Shashwat Shankar Shrestha?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Shashwat Shankar Shrestha is a multimedia designer, 3D animator, and front-end developer based in Kathmandu, Nepal."
+}
+},
+{
+"@type": "Question",
+"name": "What does Shashwat Shankar Shrestha do?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "He specializes in graphic design, VFX, motion graphics, and web development using tools like Adobe Creative Suite and Autodesk Maya."
+}
+}
+]
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [{
+"@type": "ListItem",
+"position": 1,
+"name": "Home",
+"item": "https://shashwatshankarshrestha.com.np/"
+}]
+}
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -718,20 +760,6 @@ document.querySelectorAll('.sk-card').forEach(card=>{
 
 /* ── HERO FLOATING LOGOS ── */
 (function(){
-  const tools=[
-    {name:'Photoshop',   color:'#31A8FF', bg:'rgba(49,168,255,.10)',  text:'🎨', sz:52},
-    {name:'Illustrator', color:'#FF9A00', bg:'rgba(255,154,0,.10)',   text:'✏️',  sz:48},
-    {name:'After Effects',color:'#9898FF',bg:'rgba(152,152,255,.10)', text:'🎬',  sz:56},
-    {name:'Premiere Pro',color:'#9898FF', bg:'rgba(152,152,255,.09)', text:'🎞',  sz:44},
-    {name:'Maya',        color:'#00B2E3', bg:'rgba(0,178,227,.09)',   text:'🧊',  sz:50},
-    {name:'ZBrush',      color:'#E86B28', bg:'rgba(232,107,40,.09)',  text:'🔷',  sz:46},
-    {name:'DaVinci',     color:'#E8243C', bg:'rgba(232,36,60,.09)',   text:'🎥',  sz:48},
-    {name:'InDesign',    color:'#FF3366', bg:'rgba(255,51,102,.09)',  text:'📰',  sz:44},
-    {name:'HTML5',       color:'#E44D26', bg:'rgba(228,77,38,.09)',   text:'🌐',  sz:46},
-    {name:'CSS3',        color:'#1572B6', bg:'rgba(21,114,182,.09)',  text:'💅',  sz:42},
-    {name:'JavaScript',  color:'#F7DF1E', bg:'rgba(247,223,30,.07)',  text:'⚡',  sz:50},
-    {name:'Canva',       color:'#00C4CC', bg:'rgba(0,196,204,.09)',   text:'🖼',  sz:44},
-  ];
   const hero=document.getElementById('hero');
   const container=document.getElementById('heroLogos');
   if(!hero||!container)return;
