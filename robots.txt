@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shashwatshankarshrestha.com.np/sitemap.xml
