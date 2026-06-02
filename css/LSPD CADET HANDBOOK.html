@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SASP / LSPD Cadet Handbook — GTA RP Server</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Share+Tech+Mono&display=swap');
+
+  :root {
+    --navy:    #0a1628;
+    --dark:    #0d1f3c;
+    --blue:    #1a3a6b;
+    --royal:   #1e4fa3;
+    --gold:    #c8991a;
+    --gold-lt: #f0c040;
+    --silver:  #a8b8cc;
+    --white:   #f5f8ff;
+    --text:    #1a2640;
+    --muted:   #4a5a78;
+    --danger:  #8b1a1a;
+    --green:   #1a5a2a;
+    --light-bg:#eef2f9;
+    --border:  #c0cfdf;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: #dce4f0;
+    color: var(--text);
+    font-size: 10.5pt;
+    line-height: 1.65;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    width: 850px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 60px rgba(0,0,0,.35);
+  }
+
+  /* ══ COVER PAGE ══ */
+  .cover {
+    background: var(--navy);
+    color: white;
+    min-height: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 40px;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.04) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.04) 40px);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-lt), var(--gold));
+  }
+  .cover-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-lt), var(--gold));
+  }
+
+  /* Badge SVG wrapper */
+  .badge-wrap { position: relative; z-index: 2; margin-bottom: 28px; }
+
+  .cover-subtitle-top {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11pt;
+    letter-spacing: 4px;
+    color: var(--silver);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    position: relative; z-index: 2;
+  }
+  .cover-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 44pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+    line-height: 1.05;
+    position: relative; z-index: 2;
+  }
+  .cover-title span { color: var(--gold-lt); }
+  .cover-divider {
+    width: 420px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 22px auto;
+    position: relative; z-index: 2;
+  }
+  .cover-doc-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20pt;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-align: center;
+    position: relative; z-index: 2;
+  }
+  .cover-meta {
+    margin-top: 32px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9pt;
+    color: var(--silver);
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 2;
+    position: relative; z-index: 2;
+  }
+  .cover-meta strong { color: var(--gold-lt); }
+  .cover-classified {
+    position: absolute;
+    bottom: 30px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 9pt;
+    letter-spacing: 6px;
+    color: rgba(200,153,26,.5);
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  /* ══ SECTION / CHAPTER STRUCTURE ══ */
+  .toc-page, .chapter, .section-page { page-break-before: always; }
+
+  /* Chapter header banner */
+  .ch-header {
+    background: var(--dark);
+    color: white;
+    padding: 36px 50px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ch-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-lt), var(--gold));
+  }
+  .ch-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9pt;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .ch-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.1;
+  }
+  .ch-desc {
+    color: var(--silver);
+    margin-top: 6px;
+    font-size: 10pt;
+    font-style: italic;
+  }
+  .ch-icon {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 56pt;
+    opacity: .12;
+  }
+
+  /* Body content area */
+  .ch-body { padding: 36px 50px; }
+
+  /* ── Heading styles ── */
+  h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--blue);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 5px;
+    margin: 28px 0 12px;
+  }
+  h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11pt;
+    font-weight: 500;
+    color: var(--navy);
+    margin: 20px 0 8px;
+    letter-spacing: .5px;
+    padding-left: 10px;
+    border-left: 3px solid var(--royal);
+  }
+  h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10pt;
+    color: var(--muted);
+    margin: 14px 0 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  p { margin-bottom: 10px; }
+
+  /* ── Lists ── */
+  ul, ol { margin: 8px 0 12px 24px; }
+  li { margin-bottom: 5px; }
+  ul li::marker { color: var(--gold); font-size: 12pt; }
+  ol li::marker { color: var(--royal); font-weight: 600; }
+
+  /* ── Info boxes ── */
+  .box {
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 9.5pt;
+  }
+  .box-blue  { background: #e8eef8; border-left: 4px solid var(--royal); }
+  .box-gold  { background: #faf5e4; border-left: 4px solid var(--gold); }
+  .box-red   { background: #fbeaea; border-left: 4px solid #b52a2a; }
+  .box-green { background: #e8f5eb; border-left: 4px solid #2e7d32; }
+  .box-title { font-family: 'Oswald', sans-serif; font-size: 10pt; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+  .box-blue  .box-title { color: var(--royal); }
+  .box-gold  .box-title { color: #8a6200; }
+  .box-red   .box-title { color: #b52a2a; }
+  .box-green .box-title { color: var(--green); }
+
+  /* ── Tables ── */
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 9.5pt; }
+  thead tr { background: var(--dark); color: white; }
+  thead th { font-family: 'Oswald', sans-serif; font-size: 9.5pt; letter-spacing: .5px; padding: 9px 12px; text-align: left; }
+  tbody tr:nth-child(even) { background: var(--light-bg); }
+  tbody tr:hover { background: #dce8f8; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td:first-child { font-weight: 600; color: var(--navy); }
+
+  /* ── Code / Radio ── */
+  code {
+    font-family: 'Share Tech Mono', monospace;
+    background: var(--navy);
+    color: var(--gold-lt);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 9pt;
+  }
+
+  /* ── Rank Badge Chip ── */
+  .rank-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--navy);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 9.5pt;
+    letter-spacing: .5px;
+    margin: 3px 4px;
+    border: 1px solid var(--royal);
+  }
+  .rank-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold-lt); }
+
+  /* ── Step boxes ── */
+  .steps { counter-reset: step; margin: 12px 0; }
+  .step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--royal);
+    color: white;
+    border-radius: 50%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11pt;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .step-body strong { display: block; font-family: 'Oswald', sans-serif; font-size: 10pt; color: var(--navy); margin-bottom: 2px; letter-spacing: .3px; }
+
+  /* ── Two-column layout ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 12px 0; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 12px 0; }
+
+  /* ── Visual Infographic Cards ── */
+  .card {
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    position: relative;
+  }
+  .card-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11pt;
+    color: var(--navy);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: .5px;
+  }
+  .card-icon {
+    position: absolute;
+    top: 12px; right: 14px;
+    font-size: 20pt;
+    opacity: .2;
+  }
+
+  /* ── Rank Ladder ── */
+  .rank-ladder { margin: 16px 0; }
+  .rank-row {
+    display: flex;
+    align-items: center;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    gap: 14px;
+  }
+  .rank-row:first-child { background: var(--navy); color: white; border-radius: 4px 4px 0 0; }
+  .rank-row:last-child { border-radius: 0 0 4px 4px; }
+  .rank-row:nth-child(even) { background: #eef2fa; }
+  .rank-num { font-family: 'Share Tech Mono', monospace; font-size: 8.5pt; color: var(--gold); min-width: 26px; }
+  .rank-title-col { font-family: 'Oswald', sans-serif; font-size: 10.5pt; flex: 1; letter-spacing: .3px; }
+  .rank-row:first-child .rank-title-col { color: var(--gold-lt); }
+  .rank-abbr { font-family: 'Share Tech Mono', monospace; font-size: 8.5pt; color: var(--muted); min-width: 50px; }
+  .rank-stars { color: var(--gold); font-size: 9pt; min-width: 70px; text-align: right; }
+
+  /* ── Signal callout ── */
+  .signal {
+    background: var(--navy);
+    color: var(--gold-lt);
+    font-family: 'Share Tech Mono', monospace;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 9pt;
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .signal::before { content: '📻'; font-size: 12pt; }
+
+  /* ── Page footer ── */
+  .doc-footer {
+    background: var(--navy);
+    color: var(--silver);
+    padding: 14px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 1px;
+    margin-top: 40px;
+    border-top: 3px solid var(--gold);
+  }
+  .doc-footer span { color: var(--gold); }
+
+  /* ── TOC ── */
+  .toc-page { background: var(--light-bg); min-height: 400px; padding: 50px; }
+  .toc-header {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22pt;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-bottom: 3px solid var(--gold);
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+  }
+  .toc-entry {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    padding: 7px 0;
+    border-bottom: 1px dotted var(--border);
+  }
+  .toc-num { font-family: 'Share Tech Mono', monospace; font-size: 9pt; color: var(--gold); min-width: 30px; }
+  .toc-name { font-family: 'Oswald', sans-serif; font-size: 10.5pt; color: var(--navy); flex: 1; letter-spacing: .3px; }
+  .toc-dots { flex: 1; border-bottom: 1px dotted #aaa; margin: 0 8px 3px; }
+  .toc-sub { padding-left: 30px; }
+  .toc-sub .toc-name { font-family: 'Source Serif 4', serif; font-size: 9.5pt; font-style: italic; color: var(--muted); }
+
+  /* ── Uniform diagram SVG ── */
+  .infographic-block {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 24px;
+    color: white;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .infographic-block h4 { color: var(--gold-lt); letter-spacing: 3px; margin-bottom: 16px; }
+
+  /* ── Warning stripe ── */
+  .warning-stripe {
+    background: repeating-linear-gradient(
+      45deg, #8b1a1a 0px, #8b1a1a 10px,
+      #fbeaea 10px, #fbeaea 20px
+    );
+    padding: 2px 16px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 9.5pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--navy);
+    background-color: #fbeaea;
+    border-radius: 3px;
+    margin: 8px 0;
+  }
+
+  /* ══ SVG Badge ══ */
+  .badge-svg { filter: drop-shadow(0 4px 18px rgba(200,153,26,.4)); }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; width: 100%; }
+    .ch-header, .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══════════════════════════════════════════════
+     COVER PAGE
+════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-stripe"></div>
+
+  <div class="cover-subtitle-top">San Andreas State Police &nbsp;•&nbsp; Los Santos Police Department</div>
+  <div class="cover-title">CADET<br><span>TRAINING</span><br>HANDBOOK</div>
+  <div class="cover-divider"></div>
+  <div class="cover-doc-title">Standard Operating Procedures</div>
+
+  <div class="cover-meta">
+    <strong>DIVISION:</strong> LSPD<br>
+    <strong>CLASSIFICATION:</strong> OFFICIAL DEPARTMENT DOCUMENT<br>
+    <strong>EDITION:</strong> 2026 — REV 1.0 &nbsp;|&nbsp; <strong>AUDIENCE:</strong> INCOMING CADETS<br>
+    <strong>EFFECTIVE DATE:</strong> UPON RECEIPT
+  </div>
+
+  <div class="cover-classified">OFFICIAL USE ONLY — SASP/LSPD INTERNAL DOCUMENT</div>
+
+  <div style="position: absolute; bottom: 28px; left: 0; right: 0; text-align: center; z-index: 2;">
+    <div style="display: inline-block; border-top: 1px solid rgba(200,153,26,0.3); padding-top: 10px;">
+      <div style="font-family:'Share Tech Mono',monospace; font-size: 7.5pt; color: rgba(168,184,204,0.7); letter-spacing: 2px; text-transform: uppercase;">
+        Originally Authored &amp; Owned by
+      </div>
+      <div style="font-family:'Oswald',sans-serif; font-size: 9.5pt; color: rgba(240,192,64,0.8); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px;">
+        Andrew Phillips &nbsp;·&nbsp; Ather Void &nbsp;·&nbsp; Fair Kylo
+      </div>
+      <div style="font-family:'Share Tech Mono',monospace; font-size: 7pt; color: rgba(168,184,204,0.5); letter-spacing: 1px; margin-top: 5px;">
+        Do not misuse or distribute without permission
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toc-page" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:300px; background: var(--navy); text-align:center; padding: 50px;">
+  <div style="border: 2px solid rgba(200,153,26,0.4); border-radius: 8px; padding: 36px 50px; max-width: 600px;">
+    <div style="font-family:'Oswald',sans-serif; font-size:11pt; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:18px;">⚖️ Copyright &amp; Credits</div>
+    <div style="font-family:'Source Serif 4',serif; font-size:10.5pt; color: var(--silver); line-height:2;">
+      This handbook is the original work of
+    </div>
+    <div style="font-family:'Oswald',sans-serif; font-size:15pt; color: var(--gold-lt); letter-spacing:2px; margin: 12px 0;">
+      Andrew Phillips &nbsp;&nbsp;·&nbsp;&nbsp; Ather Void &nbsp;&nbsp;·&nbsp;&nbsp; Fair Kylo
+    </div>
+    <div style="width: 300px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 16px auto;"></div>
+    <div style="font-family:'Share Tech Mono',monospace; font-size:8.5pt; color: rgba(168,184,204,0.75); line-height:2; letter-spacing:1px;">
+      All rights reserved. This document is intended solely for use<br>
+      within the SASP / LSPD department of this GTA RP server.<br><br>
+      <span style="color: rgba(200,100,100,0.85);">⛔ Do not misuse, reproduce, or distribute this document<br>
+      in any form without the express permission of the authors.</span>
+    </div>
+  </div>
+</div>
+
+<div class="toc-page">
+  <div class="toc-header">Abbreviations</div>
+    <table>
+      <thead><tr><th>Short Form</th><th>Full Form</th></tr></thead>
+      <tbody>
+        <tr><td><code>LEO</code></td><td>Law Enforcement Officer</td></tr>
+        <tr><td><code>FTO</code></td><td>Field Training Officer</td></tr>
+        <tr><td><code>FTI</code></td><td>Field Training Instructor</td></tr>
+        <tr><td><code>FTS</code></td><td>Field Training Supervisor</td></tr>
+        <tr><td><code>FTH</code></td><td>Field Training Head</td></tr>
+        <tr><td><code>COC</code></td><td>Chain of Command & Code of Conduct</td></tr>
+        <tr><td><code>HC</code></td><td>High Command</td></tr>
+        <tr><td><code>IA</code></td><td>Internal Affairs</td></tr>
+        <tr><td><code>DOC</code></td><td>Department of Corrections</td></tr>
+        <tr><td><code>EMS</code></td><td>Emergency Medical Services</td></tr>
+        <tr><td><code>K9</code></td><td>Canine Unit</td></tr>
+        <tr><td><code>SWAT</code></td><td>Special Weapons And Tactics</td></tr>
+        <tr><td><code>SRU</code></td><td>Special Response Unit</td></tr>
+        <tr><td><code>HSPU</code></td><td>High Speed Pursuit Unit</td></tr>
+        <tr><td><code>LSPD</code></td><td>Los Santos Police Department</td></tr>
+        <tr><td><code>BCSO</code></td><td>Blaine County Sheriff Office</td></tr>
+        <tr><td><code>SASP</code></td><td>San Andreas State Police</td></tr>
+        <tr><td><code>SAPR</code></td><td>San Andreas Park Rangers</td></tr>
+        <tr><td><code>SAHP</code></td><td>San Andreas Highway Patrol</td></tr>
+        <tr><td><code>DOJ</code></td><td>Department of Justice</td></tr>
+        <tr><td><code>CO</code></td><td>Commanding Officer</td></tr>
+        <tr><td><code>BOLO</code></td><td>Be On The Lookout</td></tr>
+        <tr><td><code>PIT</code></td><td>Pursue Intervention/Immobilization Technique</td></tr>
+        <tr><td><code>PBS</code></td><td>Pit Box Spike</td></tr>
+        <tr><td><code>VIN</code></td><td>Vehicle Identification Number</td></tr>
+        <tr><td><code>TVU</code></td><td>Tactical Vehicle Unit</td></tr>
+        <tr><td><code>ALPR</code></td><td>Automated License Plate Reader</td></tr>
+        <tr><td><code>BOX</code></td><td>Barricade Obstructing X-traction</td></tr>
+        <tr><td><code>MDT</code></td><td>Mobile Data Terminal</td></tr>
+        <tr><td><code>CAD</code></td><td>Computer Aided Dispatch</td></tr>
+        <tr><td><code>SOP</code></td><td>Standard Operating Procedures</td></tr>
+        <tr><td><code>GSR</code></td><td>Gunshot Residue</td></tr>
+        <tr><td><code>DNA</code></td><td>Deoxyribo Nucleic Acid</td></tr>
+        <tr><td><code>BAC</code></td><td>Blood Alcohol Content</td></tr>
+        <tr><td><code>CCTV</code></td><td>Closed Circuit Television</td></tr>
+        <tr><td><code>PC</code></td><td>Probable Cause</td></tr>
+        <tr><td><code>RS</code></td><td>Reasonable Suspicion</td></tr>
+        <tr><td><code>DUI</code></td><td>Driving Under Influence</td></tr>
+        <tr><td><code>GTM</code></td><td>Grand Theft Marine</td></tr>
+        <tr><td><code>GTA</code></td><td>Grand Theft Auto</td></tr>
+        <tr><td><code>UOF</code></td><td>Use Of Force</td></tr>
+        <tr><td><code>DOA</code></td><td>Death On Arrival</td></tr>
+        <tr><td><code>CID</code></td><td>Crime Investigation Department</td></tr>
+        <tr><td><code>FIB</code></td><td>Federal Investigation Bureau</td></tr>
+        <tr><td><code>FBI</code></td><td>Federal Bureau of Investigation</td></tr>
+        <tr><td><code>CBI</code></td><td>Central Bureau of Investigation</td></tr>
+        <tr><td><code>POLICE</code></td><td>Public Officer for Legal Investigations and Criminal Emergencies</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+
+<!-- ═══════════════════════════════════════════════
+     TABLE OF CONTENTS
+════════════════════════════════════════════════════ -->
+<div class="toc-page">
+  <div class="toc-header">Table of Contents</div>
+
+  <div class="toc-entry">
+    <span class="toc-num">01</span>
+    <span class="toc-name">Welcome &amp; Department Overview</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry toc-sub">
+    <span class="toc-num"></span>
+    <span class="toc-name">Mission Statement &amp; Core Values</span>
+  </div>
+  <div class="toc-entry toc-sub">
+    <span class="toc-num"></span>
+    <span class="toc-name">Chain of Command</span>
+  </div>
+
+  <div class="toc-entry">
+    <span class="toc-num">02</span>
+    <span class="toc-name">Rank Structure &amp; Insignia</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry toc-sub">
+    <span class="toc-num"></span>
+    <span class="toc-name">LSPD Rank Ladder | SASP Rank Ladder</span>
+  </div>
+  <div class="toc-entry toc-sub">
+    <span class="toc-num"></span>
+    <span class="toc-name">Promotion Requirements</span>
+  </div>
+
+  <div class="toc-entry">
+    <span class="toc-num">03</span>
+    <span class="toc-name">Cadet Academy &amp; Training Program</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry toc-sub">
+    <span class="toc-num"></span>
+    <span class="toc-name">Academy Phases | Field Training</span>
+  </div>
+
+  <div class="toc-entry">
+    <span class="toc-num">04</span>
+    <span class="toc-name">Code of Conduct &amp; Roleplay Standards</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry toc-sub">
+    <span class="toc-num"></span>
+    <span class="toc-name">RP Etiquette | Prohibited Behavior | Disciplinary Policy</span>
+  </div>
+
+  <div class="toc-entry">
+    <span class="toc-num">05</span>
+    <span class="toc-name">Radio Communications &amp; 10-Codes</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry toc-sub">
+    <span class="toc-num"></span>
+    <span class="toc-name">Radio Etiquette | Essential 10-Codes</span>
+  </div>
+
+  <div class="toc-entry">
+    <span class="toc-num">06</span>
+    <span class="toc-name">Traffic Stops &amp; Vehicle Procedures</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry toc-sub">
+    <span class="toc-num"></span>
+    <span class="toc-name">Initiation | High-Risk Stops | Pursuit Policy</span>
+  </div>
+
+  <div class="toc-entry">
+    <span class="toc-num">07</span>
+    <span class="toc-name">Use of Force Policy</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry toc-sub">
+    <span class="toc-num"></span>
+    <span class="toc-name">Force Continuum | Lethal Force | Taser Policy</span>
+  </div>
+
+  <div class="toc-entry">
+    <span class="toc-num">08</span>
+    <span class="toc-name">Arrest &amp; Detainment Procedures</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry toc-sub">
+    <span class="toc-num"></span>
+    <span class="toc-name">Miranda | Charges | Booking | Search &amp; Seizure</span>
+  </div>
+
+  <div class="toc-entry">
+    <span class="toc-num">09</span>
+    <span class="toc-name">Uniform, Equipment &amp; Vehicle Standards</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-num">10</span>
+    <span class="toc-name">Scene Management &amp; Backup Protocols</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-num">11</span>
+    <span class="toc-name">Report Writing &amp; MDT Usage</span>
+    <span class="toc-dots"></span>
+  </div>
+  <div class="toc-entry">
+    <span class="toc-num">12</span>
+    <span class="toc-name">Oath of Office &amp; Final Assessment</span>
+    <span class="toc-dots"></span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 1 — WELCOME & OVERVIEW
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 01</div>
+    <div class="ch-title">Welcome &amp; Department Overview</div>
+    <div class="ch-desc">Introduction to SASP and LSPD — mission, values, and command structure</div>
+    <div class="ch-icon">🏛️</div>
+  </div>
+  <div class="ch-body">
+
+    <div class="box box-blue">
+      <div class="box-title">📜 Welcome Message from the Chief</div>
+      <p>Welcome, Cadet. By entering this program, you have chosen to uphold law, order, and justice in the city of Los Santos. This handbook is your primary reference throughout your academy training and beyond. Study it. Know it. Live it.</p>
+      <p>— <strong>Chief of Police, Los Santos Police Department</strong></p>
+    </div>
+
+    <h2>1.1 Mission Statement</h2>
+    <p>The <strong>Los Santos Police Department (LSPD)</strong> and the <strong>San Andreas State Police (SASP)</strong> are jointly committed to:</p>
+    <ul>
+      <li>Protecting the lives and property of all citizens of Los Santos and San Andreas</li>
+      <li>Enforcing all applicable penal codes with fairness and impartiality</li>
+      <li>Delivering high-quality, immersive and fair roleplay experiences on the server</li>
+      <li>Maintaining professional conduct at all times, both in-character (IC) and out-of-character (OOC)</li>
+    </ul>
+
+    <h2>1.2 Core Values</h2>
+    <div class="three-col">
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <div class="card-title">Integrity</div>
+        <p>Act with honesty in every situation. Never abuse your badge, in-game powers, or administrative tools.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <div class="card-title">Respect</div>
+        <p>Treat all players — criminal or civilian — with respect. Great RP requires willing participants on both sides.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <div class="card-title">Professionalism</div>
+        <p>Represent the department at all times. Your uniform, conduct, and communication reflect the entire department.</p>
+      </div>
+    </div>
+
+    <h2>1.3 Department Structure</h2>
+    <p>The SASP and LSPD operate under a unified command structure on this server. LSPD handles primarily city/urban jurisdiction, while SASP covers state highways, rural counties, and high-level operations.</p>
+
+    <div class="box box-gold">
+      <div class="box-title">🗺️ Jurisdiction Quick Reference</div>
+      <table>
+        <thead><tr><th>Department</th><th>Primary Jurisdiction</th><th>Vehicles</th></tr></thead>
+        <tbody>
+          <tr><td>LSPD</td><td>Los Santos City limits, downtown, neighborhoods</td><td>Cruiser, Interceptor, SUV</td></tr>
+          <tr><td>SASP</td><td>State highways, Blaine County, Sandy Shores, Paleto</td><td>Highway Patrol, CVPI, Slicktop</td></tr>
+          <tr><td>Joint Operations</td><td>Major incidents, pursuits crossing jurisdictions</td><td>Any authorized unit</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>1.4 Chain of Command</h2>
+    <p>All orders and decisions flow down through the chain. Never skip levels except in cases of direct misconduct by a superior officer.</p>
+
+    
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 2 — RANK STRUCTURE
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 02</div>
+    <div class="ch-title">Rank Structure &amp; Insignia</div>
+    <div class="ch-desc">Comprehensive rank ladders for LSPD and SASP with promotion requirements</div>
+    <div class="ch-icon">⭐</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>2.1 LSPD Rank Ladder</h2>
+    <p>Ranks are earned through active service, passed evaluations, and supervisor recommendation. No rank may be self-assigned or purchased.</p>
+
+    <div class="rank-ladder">
+      <div class="rank-row">
+        <span class="rank-num">#</span>
+        <span class="rank-title-col">RANK TITLE</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">01</span>
+        <span class="rank-title-col">Cadet</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">02</span>
+        <span class="rank-title-col">Probationary Officer</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">03</span>
+        <span class="rank-title-col">Officer</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">04</span>
+        <span class="rank-title-col">Senior Officer</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">05</span>
+        <span class="rank-title-col">Corporal</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">06</span>
+        <span class="rank-title-col">Sergeant</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">07</span>
+        <span class="rank-title-col">Head Sergeant</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">08</span>
+        <span class="rank-title-col">First Lieutenant</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">09</span>
+        <span class="rank-title-col">Second Lieutenant</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">10</span>
+        <span class="rank-title-col">Captain</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">11</span>
+        <span class="rank-title-col">Assistant Chief of Police</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">12</span>
+        <span class="rank-title-col">Deputy Chief of Police</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">13</span>
+        <span class="rank-title-col">Chief of Police</span>
+      </div>
+    </div>
+
+    <h2>2.2 SASP Rank Ladder</h2>
+    <div class="rank-ladder">
+      <div class="rank-row">
+        <span class="rank-num">#</span>
+        <span class="rank-title-col">RANK TITLE</span>
+      </div>
+      <div class="rank-row">
+        <span class="rank-num">01</span>
+        <span class="rank-title-col">Trooper</span>
+      </div>
+    </div>
+
+    <h2>2.3 Promotion Requirements</h2>
+    <table>
+      <thead><tr><th>From Rank</th><th>Requirements</th><th>Approving Authority</th></tr></thead>
+      <tbody>
+        <tr><td>Cadet → Probationary Officer</td><td>Complete full academy, pass final exam, 5 patrol ride-alongs</td><td>HR/HC</td></tr>
+        <tr><td>Probationary Officer → Officer</td><td>1 weeks active, no active strikes, positive review</td><td>HR/HC</td></tr>
+        <tr><td>Officer → Senior Officer </td><td>4 weeks active, demonstrated leadership in field, able to take command</td><td>HR/HC</td></tr>
+        <tr><td>Senior Officer → Corporal</td><td>8 weeks active, specialty training</td><td>HR/HC</td></tr>
+        <tr><td>Sergeant and above</td><td> Command approval, shows exceptional skills with ability to lead the Police Department</td><td>HR/HC</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box box-red">
+      <div class="box-title">⚠️ Rank Abuse Policy</div>
+      <p>Impersonating a higher rank, ordering officers to commit rule violations, or using rank to bypass server rules will result in immediate demotion and potential server side actions. Chain of command exists to organize — not to bully.</p>
+    </div>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 02</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 3 — CADET ACADEMY
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 03</div>
+    <div class="ch-title">Cadet Academy &amp; Training Program</div>
+    <div class="ch-desc">Phases of training, ride-along requirements, and evaluation criteria</div>
+    <div class="ch-icon">🎓</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>3.1 Academy Overview</h2>
+    <p>All incoming cadets must complete the LSPD/SASP Training Academy before being granted full officer status. The academy is conducted in three phases. Cadets who fail to meet standards will be given one repeat attempt before being dismissed.</p>
+
+    <div class="box box-blue">
+      <div class="box-title">📋 Academy Enrollment Prerequisites</div>
+      <ul>
+        <li>Must have an approved application on the department Discord</li>
+        <li>Must have read and acknowledged this handbook in full</li>
+        <li>Must have an active, in-good-standing server account (no active bans)</li>
+        <li>Must be whitelisted by a Recruiting Officer or higher</li>
+      </ul>
+    </div>
+
+    <h2>3.2 Training Phases</h2>
+
+    <h3>Phase I — Orientation &amp; Classroom</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body"><strong>Introduction &amp; Handbook Review</strong> Cadets receive this handbook, read and sign the acknowledgment form. Q&amp;A with a Field Training Officer (FTO).</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body"><strong>Law &amp; Penal Code Study</strong> Review of San Andreas penal codes relevant to patrol, including charges, bail conditions, and warrants.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body"><strong>Radio Procedures</strong> Cadets must demonstrate proper radio call-outs, acknowledge 10-codes, and pass a simulated dispatch test.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body"><strong>Use of Force &amp; Arrest Procedures</strong> Classroom instruction on escalation protocols, Miranda rights, and booking procedures.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body"><strong>UI Training</strong> Basic UI MDT Training for Cadets to know how to use the MDT.</div>
+      </div>
+    </div>
+
+    <h3>Phase II — Field Training</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body"><strong>Assigned Field Training Officer (FTO)</strong> Cadet is paired with a certified FTO for a minimum of <strong>3 supervised patrol sessions</strong>.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body"><strong>Traffic Stop Evaluation</strong> Cadet must conduct 2 traffic stops under FTO observation and receive a passing evaluation (see Chapter 06).</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body"><strong>Arrest Procedure Evaluation</strong> Cadet must execute 1 arrest with proper Miranda, search, cuffing, and transport procedures.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body"><strong>Pursuit Observation</strong> Cadet must observe at least 1 vehicle pursuit and debrief with FTO on decisions made.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body"><strong>FTO Evaluation Form</strong> FTO submits a completed evaluation form. Cadets must receive "Satisfactory" or above in all core categories.</div>
+      </div>
+    </div>
+
+    <h3>Phase III — Certification &amp; Swearing-In</h3>
+    <p>Upon successful completion of Phase I and II, the cadet is scheduled for the Oath of Office ceremony. A senior officer will conduct a final oral review of the handbook before the swearing-in.</p>
+
+    <div class="box box-green">
+      <div class="box-title">✅ Graduation Checklist</div>
+      <table>
+        <thead><tr><th>Item</th><th>Requirement</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>SOP Eval</td><td>Knowledge about SOP</td><td>___________</td></tr>
+          <tr><td>Radio Eval</td><td>Pass simulated dispatch</td><td>___________</td></tr>
+          <tr><td>Traffic Stop Eval</td><td>2 supervised stops — Pass</td><td>___________</td></tr>
+          <tr><td>Arrest Eval</td><td>1 supervised arrest — Pass</td><td>___________</td></tr>
+          <tr><td>FTO Sign-Off</td><td>Satisfactory in all categories</td><td>___________</td></tr>
+          <tr><td>Handbook Acknowledgment</td><td>Signed &amp; submitted</td><td>___________</td></tr>
+          <tr><td>Oral Review</td><td>Completed by HC/HR</td><td>___________</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>3.3 Cadet to Probationary Officer — Promotion Requirements</h2>
+    <p>To be promoted from <strong>Cadet to Probationary Officer</strong>, a Cadet must successfully complete training and evaluations in all of the following areas:</p>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <div class="card-title">Required Training Areas</div>
+        <ul>
+          <li><strong>UI</strong> — Understanding of MDT &amp; Department Systems</li>
+          <li><strong>Comms</strong> — Proper radio communication and 10-codes</li>
+          <li><strong>Traffic Stop</strong> — Conducting safe and legal traffic stops</li>
+          <li><strong>Case Creation</strong> — Filling and updating cases in the MDT</li>
+          <li><strong>BOLO</strong> — Issuing and managing "Be On The Lookout" alerts</li>
+          <li><strong>Negotiation</strong> — Handling hostage and criminal negotiations</li>
+          <li><strong>SOP</strong> — Understanding and following department procedures</li>
+          <li><strong>Processing</strong> — Proper suspect arrest and paperwork processing</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">⏱️</div>
+        <div class="card-title">Cadet Promotion Timeline</div>
+        <ul>
+          <li>Cadets have a maximum of <strong>10 days</strong> to complete their training and be promoted to Probationary Officer.</li>
+          <li>Failure to complete training within this time may result in <strong>removal from the program</strong> unless special approval is granted.</li>
+          <li>Once a Cadet successfully meets all requirements, they will be <strong>evaluated and promoted to Probationary Officer</strong> by their assigned Trainer.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>3.4 Probationary Officer to Officer — Promotion Requirements</h2>
+
+    <div class="box box-blue">
+      <div class="box-title">📋 Eligibility &amp; Process</div>
+      <ul>
+        <li>After promotion to <strong>Probationary Officer</strong>, officers must complete additional training and evaluations to qualify for promotion to <strong>Officer</strong>.</li>
+        <li>Once a Probationary Officer believes they are ready, they must request their <strong>FTO</strong> to recommend them for the <strong>Officer Test</strong>.</li>
+        <li>Probationary Officers must <strong>apply for the Officer Test within 20 days</strong> of their promotion.</li>
+      </ul>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <div class="card-title">Additional Training Required</div>
+        <ul>
+          <li><strong>Felony Stop</strong> — High-risk traffic stops with firearms drawn</li>
+          <li><strong>Pursuit</strong> — Engaging and maintaining safe vehicle pursuits</li>
+          <li><strong>Advanced Pursuit</strong> — Handling complex chase scenarios and tactics</li>
+          <li><strong>Amendment</strong> — Constitutional amendments and civilian rights</li>
+          <li><strong>Bail</strong> — Understanding and handling suspect bail requests</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔴</div>
+        <div class="card-title">Key Rules — Officer Test</div>
+        <ul>
+          <li><strong>Failure to apply within 20 days</strong> will result in an automatic test appointment being assigned.</li>
+          <li>Probationary Officers have <strong>3 chances</strong> to pass the Officer Test. Failing all three attempts will result in <strong>removal from the program</strong>.</li>
+          <li>Probationary Officers may apply for promotion to Officer through their FTO.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 03</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 4 — CODE OF CONDUCT
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 04</div>
+    <div class="ch-title">Code of Conduct &amp; Roleplay Standards</div>
+    <div class="ch-desc">Expected RP behavior, prohibited conduct, and disciplinary procedures</div>
+    <div class="ch-icon">📋</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>4.1 In-Character (IC) Conduct</h2>
+    <p>All officers are expected to portray a <strong>professional law enforcement officer</strong> at all times while on duty. This means proper speech, realistic decisions, and adherence to real-world policing logic even in a game environment.</p>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <div class="card-title">Expected Behavior</div>
+        <ul>
+          <li>Address citizens as "sir," "ma'am," or by name when known</li>
+          <li>Announce your presence and purpose at traffic stops</li>
+          <li>De-escalate before escalating to force</li>
+          <li>Provide medical assistance when safe to do so</li>
+          <li>Follow supervisor directives during active incidents</li>
+          <li>Document all arrests and significant interactions in MDT</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">❌</div>
+        <div class="card-title">Prohibited Behavior (IC)</div>
+        <ul>
+          <li>Random vehicle pursuits without legal cause</li>
+          <li>Shooting suspects without proper use-of-force escalation</li>
+          <li>Accepting bribes or engaging in corruption RP without approval</li>
+          <li>Abandoning scenes without supervisor notification</li>
+          <li>Ignoring backup or dispatch calls without justification</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>4.2 Out-of-Character (OOC) Conduct</h2>
+    <p>OOC behavior directly reflects on the department. Officers are expected to behave with maturity and respect in all OOC channels including Discord, staff chat, and global OOC.</p>
+
+    <div class="warning-stripe">⚠ ZERO TOLERANCE: Toxicity, discrimination, harassment, or leaking internal department information OOC will result in immediate removal from the department.</div>
+
+    <table>
+      <thead><tr><th>Violation</th><th>First Offense</th><th>Repeat Offense</th></tr></thead>
+      <tbody>
+        <tr><td>Failing to respond to radio</td><td>Verbal warning</td><td>Written warning / demotion</td></tr>
+        <tr><td>Unauthorized vehicle use</td><td>Written warning</td><td>Suspension / demotion</td></tr>
+        <tr><td>Powergaming / metagaming</td><td>Strike + retraining</td><td>Termination from dept</td></tr>
+        <tr><td>Corruption RP without approval</td><td>Permanent removal</td><td>Permanent removal</td></tr>
+        <tr><td>Harassment (OOC)</td><td>Immediate suspension</td><td>Server report / ban</td></tr>
+        <tr><td>Leaking department info</td><td>Immediate termination</td><td>Server ban report</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4.3 Roleplay Terms Every Cadet Must Know</h2>
+    <table>
+      <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>IC</code></td><td>In Character — within the roleplay narrative</td></tr>
+        <tr><td><code>OOC</code></td><td>Out of Character — outside the roleplay (Discord, OOC chat)</td></tr>
+        <tr><td><code>Metagaming</code></td><td>Using OOC information to make IC decisions (e.g. using Discord to know a player's location)</td></tr>
+        <tr><td><code>Powergaming</code></td><td>Forcing impossible outcomes or denying others the ability to roleplay</td></tr>
+        <tr><td><code>Failrp</code></td><td>Actions that break immersion and have no realistic basis (e.g., jumping off a building for no reason)</td></tr>
+        <tr><td><code>NLR</code></td><td>New Life Rule — after dying you forget the events that led to your death</td></tr>
+        <tr><td><code>VDM</code></td><td>Vehicle Deathmatch — using a vehicle as a weapon without roleplay reason</td></tr>
+        <tr><td><code>RDM</code></td><td>Random Deathmatch — killing someone without roleplay reason</td></tr>
+        <tr><td><code>Greenzone</code></td><td>Designated safe area — no criminal or police action allowed inside</td></tr>
+      </tbody>
+    </table>
+
+
+    <h2>4.4 Leave of Absence (LOA)</h2>
+    <p>LEOs are authorized to take a Leave of Absence at their own discretion. To request an LOA, the officer must contact a member of Command or HR and provide the intended duration and reason for the leave.</p>
+
+    <div class="box box-gold">
+      <div class="box-title">⚠️ Server Presence During LOA</div>
+      <p>While on LOA, LEOs are expected to <strong>not</strong> be on the server in any capacity. Being found on the server during an LOA will result in the LOA status being removed.</p>
+    </div>
+
+    <div class="box box-red">
+      <div class="box-title">🔴 LOA Approval Requirements</div>
+      <p>Both of the following conditions must be met for an LOA to be approved. Failure to meet either will result in denial:</p>
+      <ul>
+        <li>Must have completed the past week's duty hour limit <strong>(12 Hours)</strong></li>
+        <li>LOA duration must be equal to or below <strong>10 days</strong></li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 04</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 5 — RADIO & 10-CODES
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 05</div>
+    <div class="ch-title">Radio Communications &amp; 10-Codes</div>
+    <div class="ch-desc">Proper radio etiquette, call sign structure, and essential 10-code reference</div>
+    <div class="ch-icon">📻</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>5.1 Radio Etiquette</h2>
+    <p>Radio discipline is critical. Every transmission must be clear, concise, and follow the standard format. Unnecessary chatter on the police channel is a disciplinary matter.</p>
+
+    <div class="box box-blue">
+      <div class="box-title">📡 Standard Radio Call Format</div>
+      <p><strong>[Unit ID] to [Dispatch/Unit], [Message], [Location], [Request]</strong></p>
+      <p style="margin-top:8px;font-style:italic;color:#4a5a78;">Example:</p>
+      <div class="signal">301 to Dispatch, 10-11 at, Innocence Boulevard near Mirror Park, 10-77 request, over.</div>
+      <div class="signal">Dispatch to 301, 10-4, 10-76, out.</div>
+    </div>
+
+    <h3>Radio Rules</h3>
+    <ul>
+      <li>Always <strong>identify your unit</strong> first before speaking</li>
+      <li>Say <strong>"over"</strong> when expecting a response; <strong>"out"</strong> when ending a transmission</li>
+      <li>Keep transmissions <strong>under 15 seconds</strong> where possible</li>
+      <li>Do not talk over active emergency transmissions</li>
+      <li>Use <strong>10-codes</strong> on primary dispatch channel; plain language is acceptable on secondary/tactical channels</li>
+      <li>Always acknowledge dispatch and supervisory messages with <strong>"Copy"</strong> or <strong>"10-4"</strong></li>
+    </ul>
+
+    <h2>5.2 Essential 10-Codes Reference</h2>
+    <div class="two-col">
+      <table>
+        <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>10-2</code></td><td>Loud and Clear</td></tr>
+          <tr><td><code>10-3</code></td><td>Stop Radio Chatter</td></tr>
+          <tr><td><code>10-4</code></td><td>Acknowledged / Copy</td></tr>
+          <tr><td><code>10-6</code></td><td>Busy unless urgent</td></tr>
+          <tr><td><code>10-7</code></td><td>Out of Service</td></tr>
+          <tr><td><code>10-8</code></td><td>In Service / Available</td></tr>
+          <tr><td><code>10-9</code></td><td>Repeat</td></tr>
+          <tr><td><code>10-10</code></td><td>Fight in Progress</td></tr>
+          <tr><td><code>10-11</code></td><td>Routine Traffic Stop</td></tr>
+          <tr><td><code>10-12</code></td><td>Standby</td></tr>
+          <tr><td><code>10-13</code></td><td>Shots Fired</td></tr>
+          <tr><td><code>10-14</code></td><td>EMS Down</td></tr>
+          <tr><td><code>10-20</code></td><td>Location</td></tr>
+          <tr><td><code>10-21</code></td><td>Call by Telephone</td></tr>
+          <tr><td><code>10-22</code></td><td>Disregard</td></tr>
+          <tr><td><code>10-23</code></td><td>Arrived at Scene</td></tr>
+          <tr><td><code>10-25</code></td><td>Report to [Person/Location]</td></tr>
+          <tr><td><code>10-27</code></td><td>Driver's License Check</td></tr>
+          <tr><td><code>10-28</code></td><td>Vehicle Registration Check</td></tr>
+          <tr><td><code>10-29</code></td><td>Warrant Check</td></tr>
+          <tr><td><code>10-31</code></td><td>Crime in Progress</td></tr>
+          <tr><td><code>10-32</code></td><td>ATM Robbery</td></tr>
+          <tr><td><code>10-33</code></td><td>Breaking and Entering</td></tr>
+        </tbody>
+      </table>
+      <table>
+        <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>10-34</code></td><td>Major Crime Alert</td></tr>
+          <tr><td><code>10-38</code></td><td>Stopping Suspicious Vehicle</td></tr>
+          <tr><td><code>10-41</code></td><td>Beginning Duty / On Shift</td></tr>
+          <tr><td><code>10-42</code></td><td>Ending Duty / Off Shift</td></tr>
+          <tr><td><code>10-43</code></td><td>Information</td></tr>
+          <tr><td><code>10-44</code></td><td>Brandishing</td></tr>
+          <tr><td><code>10-50</code></td><td>Vehicle Accident</td></tr>
+          <tr><td><code>10-51</code></td><td>Tow Truck Needed</td></tr>
+          <tr><td><code>10-52</code></td><td>EMS Needed</td></tr>
+          <tr><td><code>10-60</code></td><td>Carjacking</td></tr>
+          <tr><td><code>10-63</code></td><td>Suspicious Handoff</td></tr>
+          <tr><td><code>10-71A</code></td><td>Officer Down Emergency</td></tr>
+          <tr><td><code>10-72B</code></td><td>Officer Down</td></tr>
+          <tr><td><code>10-74</code></td><td>Negative</td></tr>
+          <tr><td><code>10-76</code></td><td>On the way/ Enroute</td></tr>
+          <tr><td><code>10-77</code></td><td>Need Backup</td></tr>
+          <tr><td><code>10-78</code></td><td>Need Emergency Backup</td></tr>
+          <tr><td><code>10-80</code></td><td>High-Speed Pursuit in Progress</td></tr>
+          <tr><td><code>10-90</code></td><td>Robbery in Progress</td></tr>
+          <tr><td><code>10-91</code></td><td>Transport</td></tr>
+          <tr><td><code>10-95</code></td><td>Suspect in Custody</td></tr>
+          <tr><td><code>10-98</code></td><td>Jail Break</td></tr>
+          <tr><td><code>10-99</code></td><td>Stolen Vehilce(Boosting)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 05</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 6 — TRAFFIC STOPS & PURSUITS
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 06</div>
+    <div class="ch-title">Traffic Stops &amp; Vehicle Procedures</div>
+    <div class="ch-desc">Standard traffic stop protocol, high-risk procedures, and pursuit policy</div>
+    <div class="ch-icon">🚔</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>6.1 Standard Traffic Stop (Routine Stop 10-11) Procedure</h2>
+    <p>A traffic stop begins the moment you activate your emergency lights. Every step must be completed in order. Skipping steps is a common cadet mistake and will result in a failed evaluation.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body"><strong>Radio Call-Out</strong> Before initiating, radio dispatch: <code>10-11</code>, vehicle description, plate, and your location.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body"><strong>Position Your Vehicle</strong> Park your cruiser offset to the left at a 45° angle behind the stopped vehicle — protects you from traffic and provides a barrier.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body"><strong>Approach Safely</strong> Exit the driver's side, approach the vehicle from the driver's rear, maintain awareness. Keep hand near holster. Do not stand directly in front of the door.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body"><strong>Make Contact</strong> Greet the driver: <em>"Good evening, I'm Officer [Name] with the LSPD. The reason I stopped you today is [reason]. May I see your license, registration, and proof of insurance?"</em></div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body"><strong>MDT Check</strong> Run <code>10-27</code> (license), <code>10-28</code> (registration), and <code>10-29</code> (warrants) through MDT or dispatch.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body"><strong>Take Action</strong> Based on your findings: issue warning/citation, conduct sobriety check, or escalate to high-risk stop if warrant returns.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-body"><strong>Clear the Stop</strong> Radio dispatch: <code>10-11</code>, vehicle stopped, outcome (citation/warning/arrest), then return to your vehicle.</div>
+      </div>
+    </div>
+
+    <h2>6.2 Felony Traffic Stop (Code 5)</h2>
+    <p>A Felony Stop is initiated when there is reason to believe the occupant(s) may be armed or dangerous (active warrant, weapon spotted, erratic behavior).</p>
+
+    <div class="box box-red">
+      <div class="box-title">🚨 Felony Stop — KEY DIFFERENCES</div>
+      <ul>
+        <li>Request <strong>backup before approaching</strong> — never conduct Felony Stop alone if avoidable</li>
+        <li>Issue commands from behind cover of your vehicle</li>
+        <li>Command driver: <em>"Driver! Turn off the engine! step outside your vehicle!"</em></li>
+        <li>Extract occupants one at a time — driver first, then passengers</li>
+        <li>All occupants go <strong>prone on the ground</strong> before approach</li>
+        <li>Approach only after all occupants are secured and a covering officer is present</li>
+      </ul>
+    </div>
+
+    <h2>6.3 Vehicle Pursuit Policy</h2>
+    <div class="box box-gold">
+      <div class="box-title">🏎️ Pursuit Authorization</div>
+      <p>A pursuit may only be initiated when a suspect flees from a lawful traffic stop or from commission of a crime. Officers must weigh <strong>public safety</strong> against the necessity of apprehension.</p>
+    </div>
+
+    <table>
+      <thead><tr><th>Pursuit Phase</th><th>Action Required</th></tr></thead>
+      <tbody>
+        <tr><td>Initiation</td><td>Radio <code>10-80</code>, vehicle description, direction of travel, last known location, speed</td></tr>
+        <tr><td>Secondary Unit</td><td>Second unit acknowledges on radio; primary unit maintains position unless instructed otherwise</td></tr>
+        <tr><td>Supervisor Oversight</td><td>Scene Commanding officer may order termination of pursuit at any time — this is mandatory compliance</td></tr>
+        <tr><td>Spike Strip Request</td><td>Authorized by Scene Command; must be deployed with prior radio announcement and safe placement</td></tr>
+        <tr><td>PIT Maneuver</td><td>Only authorized for Scene Command; with approval at speeds under 60 - 80 in low-traffic areas</td></tr>
+        <tr><td>Termination</td><td>Pursue terminates on Scene Command order, loss of sight, or when danger to public is excessive</td></tr>
+      </tbody>
+    </table>
+
+    <div class="warning-stripe">⚠ NEVER initiate a pursuit for minor traffic violations alone unless other factors elevate risk. The suspect's safety and public safety ALWAYS come first.</div>
+
+    <h2>6.4 Pursuit Codes</h2>
+    <p>The following codes govern how officers escalate their response during a vehicle pursuit. The appropriate code is determined by the situation and must be called by the highest-ranking officer on scene.</p>
+
+    <div style="display:flex; gap:12px; margin:16px 0;">
+      <div style="flex:1; background:#1a3a1a; border:2px solid #2a7a2a; border-radius:8px; padding:16px; text-align:center;">
+        <div style="font-size:22pt;">🟢</div>
+        <div style="font-family:'Oswald',sans-serif; font-size:12pt; color:#60e080; letter-spacing:2px; margin:6px 0;">CODE GREEN</div>
+        <div style="font-family:'Share Tech Mono',monospace; font-size:8pt; color:#a8e6a8; line-height:1.7;">Civilian fails to pull over<br>No yielding intent<br>Follow at safe distance<br>Wait for development</div>
+      </div>
+      <div style="flex:1; background:#2a2000; border:2px solid #b8860b; border-radius:8px; padding:16px; text-align:center;">
+        <div style="font-size:22pt;">🟡</div>
+        <div style="font-family:'Oswald',sans-serif; font-size:12pt; color:#f0c040; letter-spacing:2px; margin:6px 0;">CODE YELLOW</div>
+        <div style="font-family:'Share Tech Mono',monospace; font-size:8pt; color:#e0d080; line-height:1.7;">Sr Officer+ authorizes<br>Back 2 tires only<br>Stolen emergency vehicle<br>3rd vehicle = tires shoot</div>
+      </div>
+      <div style="flex:1; background:#2a0a0a; border:2px solid #8b1a1a; border-radius:8px; padding:16px; text-align:center;">
+        <div style="font-size:22pt;">🔴</div>
+        <div style="font-family:'Oswald',sans-serif; font-size:12pt; color:#e06060; letter-spacing:2px; margin:6px 0;">CODE RED</div>
+        <div style="font-family:'Share Tech Mono',monospace; font-size:8pt; color:#e8a8a8; line-height:1.7;">All methods exhausted<br>Mass killing / shooting<br>Shots fired from vehicle<br>SGT+ must authorize</div>
+      </div>
+    </div>
+
+    <div class="box" style="border-left: 6px solid #2a7a2a; background: #eafaea; margin-bottom:16px;">
+      <div class="box-title" style="color:#1a5a1a;">🟢 Code Green</div>
+      <p>Called when a civilian fails to pull over and is showing no intent of yielding. Officers must follow the vehicle from a safe distance and wait for further situation development.</p>
+    </div>
+
+    <div class="box" style="border-left: 6px solid #b8860b; background: #fefae8; margin-bottom:16px;">
+      <div class="box-title" style="color:#7a5a00;">🟡 Code Yellow</div>
+      <p>Called when the highest-ranking officer on scene (minimum Senior Officer+) has deemed a vehicle dangerous enough to shoot tires. Only the <strong>back two tires</strong> are authorized to be shot. Additional rules:</p>
+      <ul>
+        <li>Upon an emergency vehicle being stolen, it is automatically Code Yellow.</li>
+        <li>Code Yellow may be called for up to <strong>two vehicle swaps</strong>. When a third vehicle has been entered (including the original), tyres can be shot.</li>
+        <li>If the suspect switches to a bike and no MEU is involved in the chase, officers are allowed to pop the tire.</li>
+      </ul>
+    </div>
+
+    <div class="box box-red" style="margin-bottom:16px;">
+      <div class="box-title">🔴 Code Red</div>
+      <p>Called when all other methods of stopping the person have been exhausted, or when the civilian has taken part in mass killings or shootings. It may also be called if shots are exchanged from the vehicle. Code Red gives officers the ability to disable the person and their vehicle. <strong>SGT+ must call Code Red unless it is an emergency situation.</strong></p>
+    </div>
+
+    <h2>6.5 Offensive Pursuit Tactics — PIT, Box &amp; Spike</h2>
+    <p>All LSPD members must be familiar with PIT, Box, and Spike tactics. These techniques should <strong>only</strong> be used when other tactics such as barricading or tire deflation are not effective.</p>
+
+    <div class="box box-blue">
+      <div class="box-title">📖 Tactic Definitions</div>
+      <ul>
+        <li><strong>PIT:</strong> Safely disables a fleeing vehicle by causing it to lose control through strategic contact with the rear corner of the suspect vehicle.</li>
+        <li><strong>Box:</strong> Multiple police vehicles coordinate to surround a suspect vehicle, limiting its ability to maneuver or escape.</li>
+        <li><strong>Spike:</strong> Spike strips deflate the tires of a fleeing vehicle, making it difficult for the suspect to continue at high speeds.</li>
+      </ul>
+    </div>
+
+    <h3 style="font-family:'Oswald',sans-serif; font-size:12pt; color:var(--blue); text-transform:uppercase; letter-spacing:1px; margin:24px 0 10px;">6.5.1 — Spike Strip Deployment</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Identify a suitable location — straight road or area with limited maneuver options for the suspect.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Deploy spike strips in advance, positioned securely to puncture the suspect's tires.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Announce deployment on radio. Example: <em>"215 I am on the northbound shoulder of Great Ocean Highway. Spikes are laid across both lanes of travel and into the center median. Units pass on either shoulder."</em></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">Position patrol vehicles as a barrier at the end of spike strips for officer and bystander safety.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body">Consider the direction and speed of the suspect vehicle to determine the most effective deployment timing.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-body">It is the deploying LEO's duty to remove any unused spike strips after the scene.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-body">A LEO can only lay down <strong>one spike strip at a time</strong> for a maximum of <strong>three per scene</strong>.</div></div>
+    </div>
+    <div class="box box-red" style="margin-top:12px;">
+      <div class="box-title">🔴 Spike — Key Restrictions</div>
+      <ul>
+        <li>No spike shall be deployed before all other tactics have been exhausted or deemed ineffective.</li>
+        <li>The pursuit shall <strong>not exceed 50 minutes</strong> without express approval of Command or above.</li>
+      </ul>
+    </div>
+
+    <h3 style="font-family:'Oswald',sans-serif; font-size:12pt; color:var(--blue); text-transform:uppercase; letter-spacing:1px; margin:24px 0 10px;">6.5.2 — Boxing Technique</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Coordinate with other law enforcement vehicles to surround the suspect vehicle from multiple sides.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Position each vehicle strategically to prevent the suspect vehicle from escaping or maneuvering.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Maintain constant communication among team members to ensure proper coordination and synchronization of movements.</div></div>
+    </div>
+    <div class="box box-red" style="margin-top:12px;">
+      <div class="box-title">🔴 Box — Key Restrictions</div>
+      <ul>
+        <li>No Box technique shall be used before all other tactics (except spike) have been exhausted or deemed ineffective.</li>
+        <li>The pursuit shall <strong>not exceed 45 minutes</strong> without express approval of a Senior Officer or above.</li>
+      </ul>
+    </div>
+
+    <h3 style="font-family:'Oswald',sans-serif; font-size:12pt; color:var(--blue); text-transform:uppercase; letter-spacing:1px; margin:24px 0 10px;">6.5.3 — PIT Maneuver</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">Ensure conditions are appropriate — PIT is only used when other tactics are not feasible or ineffective.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">Evaluate the speed of the fleeing vehicle — PIT is typically performed between <strong>45–80 mph</strong>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">Consider potential risks to bystanders and innocent drivers.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">Take weather conditions and roadway traffic levels into account before proceeding.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body">If conditions are suitable, position your police vehicle <strong>parallel to the suspect vehicle</strong>.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-body">Maintain safe lateral clearance between both vehicles to ensure a successful maneuver.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-body">Adjust your vehicle's longitudinal position relative to the target vehicle, ensuring proper alignment for effective impact.</div></div>
+    </div>
+    <div class="box box-red" style="margin-top:12px;">
+      <div class="box-title">🔴 PIT — Key Restrictions</div>
+      <ul>
+        <li>A LEO is only allowed to PIT a vehicle that has been chased for <strong>over 20 minutes</strong>. If the suspect vehicle or any vehicle belonging to the same group pits or uses a block before 20 minutes, the PD may then pit the vehicle.</li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 06</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 7 — USE OF FORCE
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 07</div>
+    <div class="ch-title">Use of Force Policy</div>
+    <div class="ch-desc">Force continuum, lethal force justification, and taser/less-lethal policy</div>
+    <div class="ch-icon">⚖️</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>7.1 Force Continuum</h2>
+    <p>Officers must use only the <strong>minimum level of force necessary</strong> to control a situation. Force must be proportional and must escalate/de-escalate based on subject behavior.</p>
+
+    <!-- Force Continuum Visual -->
+    <div class="infographic-block">
+      <h4>USE OF FORCE CONTINUUM</h4>
+      <svg width="680" height="130" viewBox="0 0 680 130" xmlns="http://www.w3.org/2000/svg">
+        <!-- Gradient arrow -->
+        <defs>
+          <linearGradient id="forceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#1e5a1e"/>
+            <stop offset="40%" style="stop-color:#8a6200"/>
+            <stop offset="100%" style="stop-color:#8b1a1a"/>
+          </linearGradient>
+        </defs>
+        <rect x="20" y="50" width="640" height="28" rx="14" fill="url(#forceGrad)" opacity=".9"/>
+        <polygon points="660,38 680,64 660,90" fill="#8b1a1a"/>
+        <!-- Labels -->
+        <text x="50" y="45" text-anchor="middle" font-family="Oswald,sans-serif" font-size="9" fill="#a8e6a8">PRESENCE</text>
+        <text x="170" y="45" text-anchor="middle" font-family="Oswald,sans-serif" font-size="9" fill="#c8c890">VERBAL</text>
+        <text x="290" y="45" text-anchor="middle" font-family="Oswald,sans-serif" font-size="9" fill="#e0c060">CONTROL</text>
+        <text x="420" y="45" text-anchor="middle" font-family="Oswald,sans-serif" font-size="9" fill="#e09040">LESS-LETHAL</text>
+        <text x="570" y="45" text-anchor="middle" font-family="Oswald,sans-serif" font-size="9" fill="#e06060">LETHAL</text>
+        <!-- Dots -->
+        <circle cx="50" cy="64" r="6" fill="#a8e6a8"/>
+        <circle cx="170" cy="64" r="6" fill="#c8c890"/>
+        <circle cx="290" cy="64" r="6" fill="#e0c060"/>
+        <circle cx="420" cy="64" r="6" fill="#e09040"/>
+        <circle cx="570" cy="64" r="6" fill="#e06060"/>
+        <!-- Sub-labels -->
+        <text x="50" y="105" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="7.5" fill="#aaa">Uniform/Badge</text>
+        <text x="170" y="105" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="7.5" fill="#aaa">Commands</text>
+        <text x="290" y="105" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="7.5" fill="#aaa">Cuffs/Hold</text>
+        <text x="420" y="105" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="7.5" fill="#aaa">Taser/Baton</text>
+        <text x="570" y="105" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="7.5" fill="#aaa">Firearm</text>
+      </svg>
+    </div>
+
+    <h2>7.2 Lethal Force Justification</h2>
+    <p>Lethal force (drawing/firing service weapon) is <strong>only authorized</strong> under the following circumstances:</p>
+
+    <div class="box box-red">
+      <div class="box-title">🔴 Lethal Force Is Justified When:</div>
+      <ul>
+        <li>A subject is actively firing a weapon at officers or civilians</li>
+        <li>A subject brandishes a firearm and refuses commands to drop it, AND makes threatening movements</li>
+        <li>An officer's life or another person's life is in <strong>imminent danger</strong> of death or grievous bodily harm</li>
+        <li>A vehicle is being used as a weapon against an officer or civilian at close range</li>
+      </ul>
+    </div>
+
+    <div class="box box-gold">
+      <div class="box-title">⚠️ Lethal Force Is NOT Justified When:</div>
+      <ul>
+        <li>Suspect is fleeing on foot without posing a direct threat</li>
+        <li>Suspect is unarmed and not actively attacking</li>
+        <li>Shooting would endanger uninvolved civilians</li>
+        <li>The situation can be resolved with less-lethal options</li>
+        <li>Suspect is already cuffed/restrained</li>
+      </ul>
+    </div>
+
+    <h2>7.3 Taser / Less-Lethal Policy</h2>
+    <table>
+      <thead><tr><th>Weapon</th><th>Authorized Use</th><th>Restrictions</th></tr></thead>
+      <tbody>
+        <tr><td>Taser / Stun Gun</td><td>Active resistance, fleeing on foot (non-lethal threat), refusal to comply after multiple commands</td><td>Do not tase near water, at elevated heights,on vertical stairs or on restrained subjects</td></tr>
+        <tr><td>Baton</td><td>Active physical assault on officer, controlling combative suspect</td><td>No strikes to the head; authorized for limbs and torso only</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box box-blue">
+      <div class="box-title">📝 Post-Use-of-Force Reporting</div>
+      <p>Any use of force above control holds (i.e., taser, baton, or firearm) must be reported to your supervisor immediately and documented in the MDT incident report within the session. Failure to report use of force is a terminable offense.</p>
+    </div>
+
+    <h2>7.4 Escalation &amp; De-Escalation of Force</h2>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-icon">⬆️</div>
+        <div class="card-title">Escalation</div>
+        <p>An officer's first priority is to keep the situation calm, but if things become dangerous, escalation is required. Escalation means increasing the level of force by:</p>
+        <ul style="margin-top:8px;">
+          <li>Upgrading weapons — switching to Class 2 or Class 3</li>
+          <li>Increasing vehicle response — speed units and interceptor units</li>
+          <li>Increasing manpower — calling in more officers</li>
+        </ul>
+        <p style="margin-top:8px; font-style:italic; color:var(--muted);">Example: If suspects number 5 and are using Class 1 weapons while only 3 officers are on scene, officers may switch to Class 2 to neutralize the situation quickly and minimize damage.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⬇️</div>
+        <div class="card-title">De-Escalation</div>
+        <p>De-escalation is the opposite — reduce all escalated elements and attempt calm communication with the suspect. This will:</p>
+        <ul style="margin-top:8px;">
+          <li>Cool down the situation</li>
+          <li>Reduce risk of losing a hostage or heating the scene</li>
+          <li>Give officers greater control</li>
+        </ul>
+        <p style="margin-top:8px; font-style:italic; color:var(--muted);">Remember: violence is not the answer. Use force only when it is necessary.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 07</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 8 — ARREST & DETAINMENT
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 08</div>
+    <div class="ch-title">Arrest, Detainment &amp; Warrent Procedures</div>
+    <div class="ch-desc">Miranda rights, lawful arrest process, booking, and search and seizure</div>
+    <div class="ch-icon">🔒</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>8.1 Lawful Arrest Requirements</h2>
+    <p>An arrest is lawful only when at least one of the following applies:</p>
+    <ul>
+      <li>Officer has <strong>witnessed</strong> the suspect committing a crime</li>
+      <li>Officer has a valid <strong>arrest warrant</strong> on file in the MDT</li>
+      <li>Officer has <strong>probable cause</strong> supported by evidence, witness testimony, or admissions</li>
+    </ul>
+    <div class="warning-stripe">⚠ Detaining someone based solely on hunches or appearance without articulable reasonable suspicion is unlawful and a disciplinary matter.</div>
+
+    <h2>8.2 Reasonable Suspicion &amp; Probable Cause</h2>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <div class="card-title">Reasonable Suspicion (RS)</div>
+        <p>When an officer is interrogating someone in the absence of solid evidence for any crime, or at a crime scene where the individual may or may not have been involved, this is reasonable suspicion. Under RS, an officer may:</p>
+        <ul style="margin-top:8px;">
+          <li><strong>Frisk</strong> — pat down for lethals or drugs</li>
+          <li><strong>Detain</strong> — take the person to the PD for questioning related to the incident</li>
+        </ul>
+        <p style="margin-top:8px; font-style:italic; color:var(--muted);">Note: Detention under RS is <strong>not</strong> an arrest.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <div class="card-title">Probable Cause (PC)</div>
+        <p>If an officer has solid (bonafide) evidence against a suspect who has committed a crime, the officer may proceed directly to arrest and seize illegal items. Probable cause is the logical belief — supported by evidence or fact — that a crime has been or will be committed. It allows officers to:</p>
+        <ul style="margin-top:8px;">
+          <li>Perform an arrest</li>
+          <li>Request a search or arrest warrant</li>
+          <li>Seize illegal items on the spot</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>8.3 Detention vs. Arrest — Key Differences</h2>
+    <p>Every officer must understand the legal and procedural distinction between detaining someone and arresting them. These are <strong>not</strong> the same thing and must not be treated as such.</p>
+    <div style="display:flex; gap:0; margin:16px 0; border-radius:8px; overflow:hidden; border:2px solid #c0cfdf;">
+      <div style="flex:1; background:#1a2a4a; padding:18px; text-align:center;">
+        <div style="font-size:28pt;">🛑</div>
+        <div style="font-family:'Oswald',sans-serif; font-size:13pt; color:#f0c040; letter-spacing:2px; margin:8px 0;">DETENTION</div>
+        <div style="font-family:'Share Tech Mono',monospace; font-size:8pt; color:#a8b8cc; line-height:2;">Reasonable Suspicion<br>Temporary hold<br>Frisk only<br>No Miranda needed*<br>Must release if no PC</div>
+      </div>
+      <div style="width:4px; background:linear-gradient(180deg, #c8991a, #f0c040, #c8991a);"></div>
+      <div style="flex:1; background:#0a1628; padding:18px; text-align:center;">
+        <div style="font-size:28pt;">🔒</div>
+        <div style="font-family:'Oswald',sans-serif; font-size:13pt; color:#e06060; letter-spacing:2px; margin:8px 0;">ARREST</div>
+        <div style="font-family:'Share Tech Mono',monospace; font-size:8pt; color:#a8b8cc; line-height:2;">Probable Cause / Warrant<br>Formal charge follows<br>Full search authorized<br>Miranda required ✅<br>Booked &amp; transported</div>
+      </div>
+    </div>
+    <div style="font-family:'Share Tech Mono',monospace; font-size:8pt; color:#a8b8cc; text-align:center; margin-bottom:16px;">*Miranda required once interrogation begins even during detention</div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-icon">🛑</div>
+        <div class="card-title">Detention</div>
+        <ul>
+          <li>A <strong>temporary hold</strong> — not a formal arrest</li>
+          <li>Based on <strong>Reasonable Suspicion</strong> only</li>
+          <li>The person is <strong>not free to leave</strong> but has not been charged</li>
+          <li>Can frisk the subject for officer safety</li>
+          <li>Used to ask questions and gather information related to an incident</li>
+          <li>If no evidence arises, the person <strong>must be released</strong></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <div class="card-title">Arrest</div>
+        <ul>
+          <li>A <strong>formal deprivation of liberty</strong> — charges will follow</li>
+          <li>Based on <strong>Probable Cause</strong> or a valid warrant</li>
+          <li>The person is cuffed, Mirandized, and transported</li>
+          <li>Full search of the person is authorized</li>
+          <li>Must be documented in MDT with charges</li>
+          <li>Triggers all booking and court procedures</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box box-gold">
+      <div class="box-title">⚠️ Miranda Rights — When Are They Required?</div>
+      <p>Miranda rights are <strong>NOT required at the point of detention</strong>. A detained person does not need to be Mirandized unless one of the following applies:</p>
+      <ul style="margin-top:8px;">
+        <li>The detention transitions into a <strong>formal arrest</strong> (cuffing with intent to charge)</li>
+        <li>The officer begins <strong>interrogating</strong> the detained person — asking questions intended to elicit incriminating responses</li>
+      </ul>
+      <p style="margin-top:10px;">If you are simply detaining someone and asking general questions about an incident, Miranda is <strong>not yet required</strong>. However, the moment your questioning shifts to building a case against that person, <strong>Miranda must be read before continuing</strong>.</p>
+    </div>
+
+    <table>
+      <thead><tr><th></th><th>Detention</th><th>Arrest</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Legal Basis</strong></td><td>Reasonable Suspicion</td><td>Probable Cause / Warrant</td></tr>
+        <tr><td><strong>Cuffs Required</strong></td><td>No (unless safety risk)</td><td>Yes</td></tr>
+        <tr><td><strong>Miranda Required</strong></td><td>No — unless interrogation begins</td><td>Yes</td></tr>
+        <tr><td><strong>Can Search</strong></td><td>Frisk only (pat-down)</td><td>Full search authorized</td></tr>
+        <tr><td><strong>Transport to PD</strong></td><td>For questioning only</td><td>For booking &amp; charging</td></tr>
+        <tr><td><strong>Duration</strong></td><td>Temporary — must release if no PC found</td><td>Held until bail or court</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8.4 Bonafide &amp; Non-Bonafide Evidence</h2>
+    <p>Understanding what constitutes admissible evidence is critical to lawful police work. Presenting non-bonafide evidence in court can result in charges being dismissed.</p>
+    <table>
+      <thead><tr><th>Type</th><th>Definition</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Bonafide Proofs</strong></td><td>Evidence admissible in a court of law</td><td>DNA attached on file, bullet shells, body cam footage, fingerprints</td></tr>
+        <tr><td><strong>Non-Bonafide</strong></td><td>Evidence not admissible in court — validity depends on circumstances</td><td>DNA not attached on file, photos taken from high altitude (may be non-bonafide depending on circumstances)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8.5 Frisk &amp; Search</h2>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-icon">🤚</div>
+        <div class="card-title">Frisk</div>
+        <p>Frisking is patting someone down for lethals or drugs. If you feel something during the pat-down, you may ask the person to take it out themselves. If they refuse multiple times, you may remove it yourself.</p>
+        <p style="margin-top:8px;"><strong>Frisking is done only on Reasonable Suspicion.</strong></p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔎</div>
+        <div class="card-title">Search</div>
+        <p>If you have Probable Cause and bonafide evidence against a person who committed a crime on the spot, you may search them for illegal items.</p>
+        <p style="margin-top:8px;"><strong>A full search requires Probable Cause.</strong></p>
+      </div>
+    </div>
+
+    <h2>8.6 Constitutional Amendments — Know Your Rights &amp; Theirs</h2>
+    <p>Every LEO must understand the following constitutional amendments. These govern how officers interact with civilians and dictate the limits of law enforcement authority.</p>
+    <table>
+      <thead><tr><th>Amendment</th><th>Right / Protection</th></tr></thead>
+      <tbody>
+        <tr><td><strong>First Amendment</strong></td><td>Freedom of religion, speech, press, petition, and peaceful assembly.</td></tr>
+        <tr><td><strong>Second Amendment</strong></td><td>Right to keep and carry weapons with proper paperwork.</td></tr>
+        <tr><td><strong>Third Amendment</strong></td><td>No quartering of soldiers in private homes without the owner's consent.</td></tr>
+        <tr><td><strong>Fourth Amendment</strong></td><td>Protection against unreasonable searches and seizures; requires reasonable suspicion or probable cause.</td></tr>
+        <tr><td><strong>Fifth Amendment</strong></td><td>Right to an attorney, no double jeopardy, and no self-incrimination.</td></tr>
+        <tr><td><strong>Sixth Amendment</strong></td><td>Right to a speedy and public trial, to know the charges, to confront witnesses, and to have legal counsel.</td></tr>
+        <tr><td><strong>Seventh Amendment</strong></td><td>Right to a trial by jury in certain civil cases.</td></tr>
+        <tr><td><strong>Eighth Amendment</strong></td><td>No excessive bail, no excessive fines, and no cruel or unusual punishments.</td></tr>
+        <tr><td><strong>Ninth Amendment</strong></td><td>Rights listed in the Constitution do not deny other rights retained by the people.</td></tr>
+        <tr><td><strong>Tenth Amendment</strong></td><td>Powers not granted to the federal government by the Constitution are reserved to the states or the people.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8.7 Miranda I Suspect I Officers Rights</h2>
+    <p>Miranda rights must be read upon formal arrest (cuffing + intent to charge). This is a core requirement. Failure to Mirandize a suspect may result in charges being inadmissible in court.</p>
+
+    <div class="box box-blue">
+      <div class="box-title">📖 Standard Miranda — Read Word for Word</div>
+      <p style="font-family:'Share Tech Mono',monospace; font-size:9pt; line-height:1.8; background:#1a1a2e; color:#f0c040; padding:14px; border-radius:4px; margin-top:8px;">
+        "You are under arrest. You have the right to remain silent. Anything you say can and will be used against you in a court of law. You have the right to an attorney. If you cannot afford an attorney, one will be appointed for you if available. Do you understand your rights ?"
+      </p>
+    </div>
+
+    <p>Suspect rights are the legal protections given to a person suspected of a crime, including the right to remain silent and the right to a lawyer.</p>
+    <div class="box box-blue">
+      <div class="box-title">📖 Suspects Right</div>
+      <p style="font-family:'Share Tech Mono',monospace; font-size:9pt; line-height:1.8; background:#1a1a2e; color:#f0c040; padding:14px; border-radius:4px; margin-top:8px;">
+        "Suspects are not legally required to agree to a search at the road side. They must be detained and transported to a police station before any search can be carried out."
+      </p>
+    </div>
+
+    <p>Officer rights are the legal powers and protections granted to law enforcement officers to perform their duties, enforce laws, and ensure public safety within the limits of the law.</p>
+    <div class="box box-blue">
+      <div class="box-title">📖 Officers Right</div>
+      <p style="font-family:'Share Tech Mono',monospace; font-size:9pt; line-height:1.8; background:#1a1a2e; color:#f0c040; padding:14px; border-radius:4px; margin-top:8px;">
+        "An officer has the right to detain a suspect and transport the said suspect to police department for questioning. This is usually following CDS complaint for either (10-15) or (10-13)gunshot reports if the suspects are in the vacinity of the crime."
+      </p>
+    </div>
+
+    <h2>8.8 Arrest Process — Step by Step</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body"><strong>Announce Intent to Arrest</strong> "<em>You are under arrest. Place your hands behind your back.</em>" Clearly state this IC before cuffing.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body"><strong>Apply Restraints</strong> In-game: use <code>/cuff</code> or the interaction menu. Ensure compliance — use less-lethal if actively resisting.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body"><strong>Read Miranda Rights</strong> Deliver Miranda in full. Note response in MDT ("Subject stated: Yes / Subject invoked right to remain silent").</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body"><strong>Search the Subject</strong> Conduct a pat-down for weapons and contraband. Use <code>/search</code> in-game. Document any items seized in the MDT.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body"><strong>Transport to Station</strong> Radio dispatch: <code>10-15</code>, transporting to [station]. Place subject in cruiser rear seat.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body"><strong>Booking</strong> Enter all charges into MDT, add seized evidence, set bail amount per the bail table, and notify a supervisor if felony charges apply.</div>
+      </div>
+    </div>
+
+    <h2>8.9 Types of Crimes </h2>
+    <table>
+      <thead><tr><th>There are three types of crimes</th></tr></thead>
+      <tbody>
+        <tr><td>Felony - max jail time and max fine</td></tr>
+        <tr><td>Misdemeanor - normal jail and normal fine</td></tr>
+        <tr><td>Infraction - only fine, and no jail time</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8.10 Types of Warrant</h2>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Warrant Required</div>
+        <ul>
+          <p>For These warrants to be issued a apporval from a <strong>Judge/HC</strong> is required</p>
+          <li>Arrest Warrant </li>
+          <li>Search & Seizure Warrant</li>
+          <li>Raid Warrant</li>
+          <li>Kill on Sight(KOS)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Warrant Not Required</div>
+        <ul>
+          <li>BOLO [Be on the Lookout] </li>
+          <p>It is basically to lookout for any missing person, vehicle or even animals who get lost, <strong>ANY OFFICERS</strong> can issue a BOLO.</p>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 08</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 9 — UNIFORM & EQUIPMENT
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 09</div>
+    <div class="ch-title">Equipment &amp; Vehicle Standards</div>
+    <div class="ch-desc">Required loadout, and vehicle selection guidelines</div>
+    <div class="ch-icon">👮</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>9.1 Standard Equipment Loadout</h2>
+    <table>
+      <thead><tr><th>Item</th><th>Rank Eligible</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Service Pistol</td><td>Solo Cadet</td><td>Primary sidearm. Always holstered unless force is justified.</td></tr>
+        <tr><td>Pistol Ammo</td><td>Solo Cadet</td><td>9mm Ammo.</td></tr>
+        <tr><td>Taser</td><td>All Officers</td><td>Less-lethal. Follow Chapter 7 policy.</td></tr>
+        <tr><td>Handcuffs</td><td>All Officers</td><td>Standard restraint. Must be applied IC.</td></tr>
+        <tr><td>Fingerprint Scanner</td><td>All Officers</td><td>Use to verify citizen identity from fingerprint.</td></tr>
+        <tr><td>Instant Camera</td><td>All Officers</td><td>Use to click evidence photos.</td></tr>
+        <tr><td>Wheel Clamp</td><td>All Officers</td><td>Used to lock illegal parked vehicles.</td></tr>
+        <tr><td>Breathalyzer</td><td>All Officers</td><td>Use to check the alcohol amount in the body.</td></tr>
+        <tr><td>Metal Wand</td><td>All Officers</td><td>Use to verify metal in the body.</td></tr>
+        <tr><td>Body Camera</td><td>All Officers</td><td>Mandatory activation at traffic stops and arrests (use /bodycam if available).</td></tr>
+        <tr><td>Flashlight / Torch</td><td>All Officers</td><td>Required for night patrol and to collect evidences.</td></tr>
+        <tr><td>Baton / Nightstick</td><td>All Officers</td><td>Use to control the aggresive suspects.</td></tr>
+        <tr><td>MDT</td><td>All Officers</td><td>Access to warrant/plate checks and report filing.</td></tr>
+        <tr><td>Spike Strip</td><td>Officer</td><td>Deployed per pursuit policy. Announcement required before deployment.</td></tr>
+        <tr><td>Heavy Armor</td><td>All Officers</td><td>Cannot be worn on regular patrol without callout.</td></tr>
+        <tr><td>Armor Plate</td><td>All Officers</td><td>Use to change your armor plates.</td></tr>
+        <tr><td>Parachute</td><td>All Officers</td><td>Use when to jump from high areas.</td></tr>
+        <tr><td>Ifaks</td><td>All Officers</td><td>Use when you are hurt.</td></tr>
+        <tr><td>Taser</td><td>All Officers</td><td>Use to control the evading suspects.</td></tr>
+        <tr><td>Diving Gear</td><td>All Officers</td><td>Use for underwater operations.</td></tr>
+        <tr><td>Megaphone</td><td>Corporal</td><td>Use to notify the suspects.</td></tr>
+        <tr><td>Police Shield</td><td>All Officers</td><td>Use to control riots (SPECIAL CASE).</td></tr>
+        <tr><td>Anklet</td><td>All Officers</td><td>Use on the bailed suspects to know their locations (You can use to the anklet to tase them).</td></tr>
+      </tbody>
+    </table>
+
+    <h2>9.3 Authorized Patrol Vehicles</h2>
+    <table>
+      <thead><tr><th>Vehicle</th><th>Rank</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>Police Cruiser (Standard)</td><td>Solo Cadet</td><td>Standard city patrol</td></tr>
+        <tr><td>Police Buffalo</td><td>Officer</td><td>Urban pursuit / high-speed response</td></tr>
+        <tr><td>Police Explorer</td><td>PTD</td><td>PTD Department Offical Vehicle</td></tr>
+        <tr><td>Police Charger</td><td>Senior Officer</td><td>High Speed Pursuit Unit</td></tr>
+        <tr><td>Police Boat</td><td>Officer</td><td>Use for water releated operations.</td></tr>
+        <tr><td>Police Helicopter</td><td>Air Support certified officers</td><td>Aerial surveillance, high-speed pursuit support</td></tr>
+        <tr><td>Police Bike</td><td>Bike Unit certified officers</td><td>Tactical operations only</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 09</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 10 — SCENE MANAGEMENT
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 10</div>
+    <div class="ch-title">Scene Management &amp; Backup Protocols</div>
+    <div class="ch-desc">Multi-unit coordination, perimeter control, and requesting assistance</div>
+    <div class="ch-icon">🗺️</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>10.1 Scene Command</h2>
+    <p>Every active scene has an <strong>Scene Command (SC)</strong>. The SC is typically the first responding officer or highest ranked officer present. All other officers take direction from the SC. The SC coordinates with dispatch and reports to supervisors.</p>
+
+    <div class="box box-blue">
+      <div class="box-title">📋 SC Responsibilities</div>
+      <ul>
+        <li>Establish scene perimeter and assign positions to responding units</li>
+        <li>Communicate scene status to dispatch and supervisors</li>
+        <li>Request additional resources (EMS, additional units, air support)</li>
+        <li>Document key decisions made during the incident</li>
+        <li>Clear the scene once situation is resolved and debrief units</li>
+      </ul>
+    </div>
+
+    <h2>10.2 Perimeter Control</h2>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-icon">🔵</div>
+        <div class="card-title">Inner Perimeter</div>
+        <p>The immediate zone around the threat/incident. Only officers directly engaged with the situation. No civilians. Maintain cover and concealment positions.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🟡</div>
+        <div class="card-title">Outer Perimeter</div>
+        <p>The secondary cordon keeping civilians and media back. Minimum 2 units. One officer manages the media/civilian line. Redirect traffic as needed.</p>
+      </div>
+    </div>
+
+    <h2>10.3 Backup Request Protocol</h2>
+    <table>
+      <thead><tr><th>Code</th><th>Request Type</th><th>Response Expected</th></tr></thead>
+      <tbody>
+        <tr><td><code>10-33</code></td><td>Emergency — Officer in Distress</td><td>ALL available units respond, clear the channel</td></tr>
+        <tr><td>Code 3 Backup</td><td>Lights &amp; siren response needed — active threat</td><td>Nearest 2–3 units respond</td></tr>
+        <tr><td>Code 2 Backup</td><td>Non-emergency backup — scene control</td><td>Nearest available unit responds</td></tr>
+        <tr><td>Traffic / Scene Control</td><td>Need unit to manage civilian traffic at scene</td><td>Dispatch assigns nearest available</td></tr>
+        <tr><td>EMS Request</td><td>Medical assistance needed (<code>10-52</code>)</td><td>EMS dispatched; officer maintains scene safety</td></tr>
+        <tr><td>Supervisor Request</td><td>Supervisor needed IC (<code>10-25</code> for supervisor)</td><td>Responding sergeant/lieutenant acknowledges</td></tr>
+      </tbody>
+    </table>
+
+    <h2>10.4 Code System</h2>
+    <table>
+      <thead><tr><th>Code</th><th>Meaning</th><th>Lights/Siren</th></tr></thead>
+      <tbody>
+        <tr><td>Code 1</td><td>Routine — no urgency</td><td>None</td></tr>
+        <tr><td>Code 2</td><td>Urgent — proceed promptly</td><td>Lights only</td></tr>
+        <tr><td>Code 3</td><td>Emergency — immediate response</td><td>Full lights and siren</td></tr>
+        <tr><td>Code 4</td><td>Scene clear — no further assistance needed</td><td>N/A</td></tr>
+        <tr><td>Code 5</td><td>Felony Traffic Stop</td><td>None (covert)</td></tr>
+        <tr><td>Code 6</td><td>Investigating the area</td><td>N/A</td></tr>
+        <tr><td>Code 7</td><td>Standard Traffic Stop</td><td>N/A</td></tr>
+        <tr><td>Code 8</td><td>AFK</td><td>N/A</td></tr>
+        <tr><td>Code 44</td><td>Food Break</td><td>N/A</td></tr>
+        <tr><td>Code 48</td><td>Repair/Refuel</td><td>N/A</td></tr>
+        <tr><td>Code 50</td><td>Report Writing</td><td>N/A</td></tr>
+        <tr><td>Code 99</td><td>Emergency backup every unit respond no any restrictions</td><td>N/A</td></tr>
+        <tr><td>Code 100</td><td>In position to block</td><td>N/A</td></tr>
+        <tr><td>Signal 100</td><td>Priority Comms Only</td><td>N/A</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 10</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 11 — REPORT WRITING & MDT
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 11</div>
+    <div class="ch-title">Report Writing &amp; MDT Usage</div>
+    <div class="ch-desc">How to write proper incident reports and use the Mobile Data Terminal</div>
+    <div class="ch-icon">💻</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>11.1 Why Reports Matter</h2>
+    <p>Reports are the backbone of serious law enforcement roleplay. They enable prosecutors to charge suspects, allow superior officers to review decisions, and create a persistent paper trail for the server's legal system. A well-written report is the mark of a professional officer.</p>
+
+    <h2>11.2 MDT — Core Functions</h2>
+    <table>
+      <thead><tr><th>MDT Function</th><th>Usage</th><th>Access Level</th></tr></thead>
+      <tbody>
+        <tr><td>Plate / Registration Check</td><td>Run vehicle plate: returns owner, status, warrants</td><td>All Officers</td></tr>
+        <tr><td>Person / ID Check</td><td>Run name/DOB: returns priors, warrants, flags</td><td>All Officers</td></tr>
+        <tr><td>Warrant Search</td><td>Check active warrants by name or case number</td><td>All Officers</td></tr>
+        <tr><td>Incident Report (IR)</td><td>Document arrests, incidents, use of force</td><td>All Officers</td></tr>
+        <tr><td>Warrant Request</td><td>Submit request to DA/Judge for arrest/search warrant</td><td>Corporal+</td></tr>
+        <tr><td>BOLO / APB</td><td>Broadcast Be On Lookout for suspect/vehicle</td><td>Sergeant+</td></tr>
+        <tr><td>Evidence Locker</td><td>Log seized items, chain of custody</td><td>All Officers</td></tr>
+        <tr><td>Personnel Records</td><td>View officer records, commendations, strikes</td><td>Supervisor+</td></tr>
+      </tbody>
+    </table>
+
+    <h2>11.3 Standard Incident Report Template</h2>
+    <div class="box box-blue">
+      <div class="box-title">📄 MDT Incident Report — Required Fields</div>
+      <table>
+        <tbody>
+          <tr><td style="width:200px"><strong>Date / Time:</strong></td><td>In-game date and time of incident</td></tr>
+          <tr><td><strong>Reporting Officer:</strong></td><td>Your character name + badge number</td></tr>
+          <tr><td><strong>Assisting Officers:</strong></td><td>All officers on scene</td></tr>
+          <tr><td><strong>Incident Type:</strong></td><td>Traffic stop / Arrest / Use of Force / Pursuit / etc.</td></tr>
+          <tr><td><strong>Location:</strong></td><td>Street address or intersection where incident occurred</td></tr>
+          <tr><td><strong>Subject(s):</strong></td><td>Full name, DOB, physical description of all involved parties</td></tr>
+          <tr><td><strong>Charges Filed:</strong></td><td>List all charges with penal code references</td></tr>
+          <tr><td><strong>Narrative:</strong></td><td>Clear, chronological, factual account — no personal opinions</td></tr>
+          <tr><td><strong>Evidence Logged:</strong></td><td>List all seized items and their storage location</td></tr>
+          <tr><td><strong>Disposition:</strong></td><td>Released / Arrested / Referred to Detective / Pending investigation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>11.4 Narrative Writing Tips</h2>
+    <ul>
+      <li>Write in <strong>first-person, past tense</strong>: "<em>I observed the vehicle...</em>"</li>
+      <li>Be <strong>specific</strong>: times, locations, descriptions, exact quotes from suspect where relevant</li>
+      <li>Stick to <strong>facts</strong>, not interpretations: "<em>Subject stated: 'I don't have a license'</em>" — NOT "<em>Subject lied about having a license</em>"</li>
+      <li>Use <strong>proper penal code</strong> references for all charges listed</li>
+      <li>Keep it <strong>concise</strong>: one clear narrative, no filler sentences</li>
+    </ul>
+
+    <div class="box box-gold">
+      <div class="box-title">✏️ Example Narrative</div>
+      <p style="font-family:'Share Tech Mono',monospace; font-size:8.5pt; line-height:1.7; color: #3a2a00;">
+        On [date] at approximately 2147 hours, I, Officer J. Carter (Badge #1042), was on patrol southbound on Forum Drive when I observed a red Sultan RS, plate YANKEE-BRAVO-4-8-2, traveling at approximately 95 mph in a posted 40 mph zone. I activated my emergency lights and initiated a traffic stop near the intersection of Forum Drive and Jamestown St. The vehicle stopped after approximately 200 meters. I ran the plate via MDT — vehicle returned registered to Marcus Bell, no warrant. Upon contact, the driver, identified as Marcus Bell (DOB: 05/14/1990), smelled of alcohol and had bloodshot eyes. I conducted a field sobriety test, which subject failed on two of three components. Subject was placed under arrest for DUI (PC-2110), Mirandized, and transported to LSPD Mission Row. A breathalyzer administered at booking returned a BAC of 0.12. Vehicle was towed by Crusader Towing. Report submitted to duty supervisor at 2238 hours.
+      </p>
+    </div>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 11</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 12 — OATH & FINAL ASSESSMENT
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">CHAPTER 12</div>
+    <div class="ch-title">Oath of Office &amp; Final Assessment</div>
+    <div class="ch-desc">The swearing-in ceremony, final acknowledgment, and cadet sign-off</div>
+    <div class="ch-icon">🎖️</div>
+  </div>
+  <div class="ch-body">
+
+    <h2>12.1 Final Assessment Overview</h2>
+    <p>Before taking the Oath of Office, every Probationary Officer must complete and pass the final assessment. This confirms all required training areas have been evaluated and the officer is ready to be promoted to full Officer status.</p>
+
+    <div class="box box-green">
+      <div class="box-title">✅ Final Assessment Criteria — Probationary Officer to Officer</div>
+      <table>
+        <thead><tr><th>Assessment Area</th><th>Description</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>UI</strong></td><td>Demonstrated understanding of MDT &amp; Department Systems</td><td>___________</td></tr>
+          <tr><td><strong>Amendment</strong></td><td>Knowledge of constitutional amendments and civilian rights</td><td>___________</td></tr>
+          <tr><td><strong>SOPs</strong></td><td>Understanding and correct application of Standard Operating Procedures</td><td>___________</td></tr>
+          <tr><td><strong>Processing</strong></td><td>Proper suspect arrest, booking, and paperwork processing</td><td>___________</td></tr>
+          <tr><td><strong>Reports</strong></td><td>Submit one completed MDT incident report — all fields correct, narrative factual</td><td>___________</td></tr>
+          <tr><td><strong>Radio Etiquette</strong></td><td>Correct use of radio, 10-codes, and dispatch communication</td><td>___________</td></tr>
+          <tr><td><strong>Traffic Stop</strong></td><td>Execute a full traffic stop — all steps completed correctly under evaluation</td><td>___________</td></tr>
+          <tr><td><strong>Pursuit</strong></td><td>Demonstrate safe and lawful vehicle pursuit engagement and tactics</td><td>___________</td></tr>
+          <tr><td><strong>Felony Stop</strong></td><td>Conduct a high-risk felony stop with firearms drawn and correct commands</td><td>___________</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>12.2 Oath of Office</h2>
+    <p>The Oath of Office is administered by the Chief of Police, Commissioner, or their designee in an in-game ceremony at Mission Row PD or the SASP HQ.</p>
+
+    <div style="background: var(--navy); border: 2px solid var(--gold); border-radius: 6px; padding: 28px 36px; margin: 20px 0; text-align:center;">
+      <div style="font-family:'Oswald',sans-serif; font-size:12pt; letter-spacing:3px; color:var(--gold-lt); margin-bottom:16px; text-transform:uppercase;">⚖️ Oath of Office — LSPD / SASP</div>
+      <p style="font-family:'Source Serif 4',serif; font-size:11.5pt; color:white; line-height:2; font-style:italic; max-width:520px; margin: 0 auto;">
+        "I, [Full Name], do solemnly swear that I will faithfully and impartially discharge and perform all duties incumbent upon me as an Officer of the Los Santos Police Department / San Andreas State Police, in accordance with the Constitution of San Andreas, and the laws thereof; that I will serve the citizens of this state with integrity, professionalism, and honor; that I will protect the innocent, enforce the law without prejudice, and uphold the values of this department. So help me."
+      </p>
+      <div style="margin-top:24px; display:flex; justify-content:center; gap:60px;">
+        <div style="text-align:center;">
+          <div style="border-top: 1px solid #4a7acc; width:180px; padding-top:8px; font-family:'Share Tech Mono',monospace; font-size:8pt; color:#a8b8cc; letter-spacing:1px;">CADET SIGNATURE</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="border-top: 1px solid #4a7acc; width:180px; padding-top:8px; font-family:'Share Tech Mono',monospace; font-size:8pt; color:#a8b8cc; letter-spacing:1px;">ADMINISTERING OFFICER</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>12.3 Handbook Acknowledgment Form</h2>
+    <div style="border: 2px solid var(--border); border-radius: 6px; padding: 24px 30px; margin: 20px 0; background: var(--light-bg);">
+      <p style="font-family:'Oswald',sans-serif; font-size:12pt; color: var(--navy); letter-spacing:1px; margin-bottom:12px;">CADET ACKNOWLEDGMENT &amp; SIGN-OFF</p>
+      <p>I, the undersigned, acknowledge that I have read, understood, and agree to abide by all policies, procedures, and standards outlined in the <strong>SASP / LSPD Cadet Training Handbook</strong>. I understand that violations of these policies may result in disciplinary action up to and including removal from the department.</p>
+      <br>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:16px;">
+        <div>
+          <div style="border-bottom:1px solid #888; padding-bottom:4px; margin-bottom:6px; height:28px;"></div>
+          <div style="font-family:'Share Tech Mono',monospace; font-size:8.5pt; color:var(--muted);">In-Game Character Name</div>
+        </div>
+        <div>
+          <div style="border-bottom:1px solid #888; padding-bottom:4px; margin-bottom:6px; height:28px;"></div>
+          <div style="font-family:'Share Tech Mono',monospace; font-size:8.5pt; color:var(--muted);">Discord Username</div>
+        </div>
+        <div>
+          <div style="border-bottom:1px solid #888; padding-bottom:4px; margin-bottom:6px; height:28px;"></div>
+          <div style="font-family:'Share Tech Mono',monospace; font-size:8.5pt; color:var(--muted);">Badge Number Assigned</div>
+        </div>
+        <div>
+          <div style="border-bottom:1px solid #888; padding-bottom:4px; margin-bottom:6px; height:28px;"></div>
+          <div style="font-family:'Share Tech Mono',monospace; font-size:8.5pt; color:var(--muted);">Date of Academy Completion</div>
+        </div>
+        <div>
+          <div style="border-bottom:1px solid #888; padding-bottom:4px; margin-bottom:6px; height:28px;"></div>
+          <div style="font-family:'Share Tech Mono',monospace; font-size:8.5pt; color:var(--muted);">FTO / Training Officer Signature</div>
+        </div>
+        <div>
+          <div style="border-bottom:1px solid #888; padding-bottom:4px; margin-bottom:6px; height:28px;"></div>
+          <div style="font-family:'Share Tech Mono',monospace; font-size:8.5pt; color:var(--muted);">Supervising Officer Approval</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box box-blue">
+      <div class="box-title">🏅 Congratulations, Officer</div>
+      <p>You have completed the SASP / LSPD Cadet Training Academy. You are now a sworn officer of this department. Wear your badge with pride, act with integrity, and make the department proud. The citizens of Los Santos are counting on you.</p>
+      <p style="margin-top:8px;"><strong>Welcome to the Thin Blue Line.</strong></p>
+    </div>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>CADET HANDBOOK — CHAPTER 12 / END</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+
+
+<!-- ═══════════════════════════════════════════════
+     APPENDIX A — SIMILAR CHARGES REFERENCE
+════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-header">
+    <div class="ch-num">APPENDIX A</div>
+    <div class="ch-title">Similar Charges — Know the Difference</div>
+    <div class="ch-desc">Commonly confused charges and how to distinguish between them</div>
+    <div class="ch-icon">⚖️</div>
+  </div>
+  <div class="ch-body">
+
+    <p>The following charges are frequently confused due to their similarity. Every officer must understand the key distinction between each pair to ensure accurate charging and avoid legal errors.</p>
+
+    <table>
+      <thead><tr><th>Charge Pair</th><th>Key Distinction</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Evading vs. Eluding</strong></td><td><strong>Evading</strong> is attempting to avoid arrest or detection (e.g. hiding, fleeing on foot). <strong>Eluding</strong> specifically refers to fleeing from a law enforcement vehicle in a motor vehicle after being signaled to stop.</td></tr>
+        <tr><td><strong>Assault vs. Battery</strong></td><td><strong>Assault</strong> is the threat or attempt to cause harm — no contact needed. <strong>Battery</strong> is the actual unlawful physical contact or use of force against another person.</td></tr>
+        <tr><td><strong>Grand Theft Auto (GTA) vs. Vehicle Theft</strong></td><td><strong>GTA</strong> involves stealing a vehicle with the intent to permanently deprive the owner, typically carrying higher penalties. <strong>Vehicle Theft</strong> may include temporary unauthorized use (joyriding).</td></tr>
+        <tr><td><strong>Brandishing vs. Possession</strong></td><td><strong>Brandishing</strong> is displaying a weapon in a threatening or menacing manner in public. <strong>Possession</strong> is simply having a weapon on your person, which may or may not be lawful depending on licensing.</td></tr>
+        <tr><td><strong>Robbery vs. Burglary vs. Larceny</strong></td><td><strong>Robbery</strong> involves taking property directly from a person using force or threats. <strong>Burglary</strong> is unlawfully entering a structure with intent to commit a crime inside. <strong>Larceny</strong> is theft of property without force or breaking and entering.</td></tr>
+        <tr><td><strong>Manslaughter vs. Murder</strong></td><td><strong>Manslaughter</strong> is the unlawful killing of a person without premeditation — typically accidental or in the heat of passion. <strong>Murder</strong> is an intentional and premeditated killing with malice aforethought.</td></tr>
+        <tr><td><strong>Obstruction vs. Resisting</strong></td><td><strong>Obstruction</strong> is interfering with or hindering law enforcement in carrying out their duties. <strong>Resisting</strong> is physically opposing or refusing to comply with an officer's lawful commands during arrest or detention.</td></tr>
+        <tr><td><strong>Bribery vs. Extortion</strong></td><td><strong>Bribery</strong> involves offering or accepting something of value to influence an official's actions. <strong>Extortion</strong> is obtaining something through coercion, threats, or intimidation.</td></tr>
+        <tr><td><strong>Kidnapping vs. False Imprisonment</strong></td><td><strong>Kidnapping</strong> involves moving or transporting a person by force or threat against their will. <strong>False Imprisonment</strong> is unlawfully restraining or confining someone without moving them to another location.</td></tr>
+        <tr><td><strong>Possession vs. PWID</strong></td><td><strong>Possession</strong> is simply having a controlled substance on your person. <strong>PWID</strong> involves having a controlled substance with the intent to sell or distribute it — usually evidenced by quantity, packaging, or cash.</td></tr>
+        <tr><td><strong>Reckless Driving vs. Negligent Driving</strong></td><td><strong>Reckless Driving</strong> is consciously disregarding a substantial risk to others (willful disregard). <strong>Negligent Driving</strong> is failing to exercise ordinary care while driving — a lower-tier charge.</td></tr>
+        <tr><td><strong>Terroristic Threats vs. Criminal Threats</strong></td><td><strong>Terroristic Threats</strong> involve threatening mass violence intended to terrorize a population or government. <strong>Criminal Threats</strong> are direct threats of bodily harm made against a specific individual causing reasonable fear.</td></tr>
+        <tr><td><strong>Trespassing vs. Loitering</strong></td><td><strong>Trespassing</strong> is unlawfully entering or remaining on someone else's property without permission. <strong>Loitering</strong> is lingering in a public or semi-public area without apparent purpose.</td></tr>
+        <tr><td><strong>Forgery vs. Fraud</strong></td><td><strong>Forgery</strong> is the act of falsifying a document, signature, or item with intent to deceive. <strong>Fraud</strong> is a broader term covering any deliberate deception for personal or financial gain — forgery is one method of committing fraud.</td></tr>
+        <tr><td><strong>Attempt vs. Conspiracy</strong></td><td><strong>Attempt</strong> is taking a direct step toward committing a crime that ultimately fails. <strong>Conspiracy</strong> is an agreement between two or more persons to commit a crime — no action needs to be taken for the charge to apply.</td></tr>
+        <tr><td><strong>Inciting a Riot vs. Unlawful Assembly</strong></td><td><strong>Inciting a Riot</strong> involves actively encouraging or provoking a group to commit acts of violence or public disorder. <strong>Unlawful Assembly</strong> is simply gathering as a group with intent to commit an unlawful act, even without violence breaking out.</td></tr>
+        <tr><td><strong>Perjury vs. Filing a False Report</strong></td><td><strong>Perjury</strong> is lying under oath in a legal proceeding. <strong>Filing a False Report</strong> is knowingly providing false information to law enforcement outside of a sworn court setting.</td></tr>
+        <tr><td><strong>Possession of Burglary Tools vs. Possession of Illegal Contraband</strong></td><td><strong>Possession of Burglary Tools</strong> refers to having tools specifically intended to break into structures (e.g. lockpicks, crowbars). <strong>Possession of Illegal Contraband</strong> refers to having any item that is prohibited by law regardless of intended use.</td></tr>
+        <tr><td><strong>Murder 1st Degree vs. 2nd Degree vs. Manslaughter</strong></td><td><strong>1st Degree Murder</strong> is premeditated and deliberate killing. <strong>2nd Degree Murder</strong> is intentional but not premeditated — committed in the moment. <strong>Manslaughter</strong> is an unintentional killing, either through recklessness or accident.</td></tr>
+        <tr><td><strong>Impersonating a Public Official vs. Impersonating Law Enforcement</strong></td><td><strong>Impersonating a Public Official</strong> covers falsely claiming to be any government figure. <strong>Impersonating Law Enforcement</strong> is specifically pretending to be a police officer — typically carries a heavier charge.</td></tr>
+        <tr><td><strong>Joyriding vs. Grand Theft Auto (GTA)</strong></td><td><strong>Joyriding</strong> is taking a vehicle without permission for temporary use with no intent to keep it permanently. <strong>GTA</strong> involves taking a vehicle with the intent to permanently deprive the owner of it.</td></tr>
+        <tr><td><strong>Stalking vs. Harassment</strong></td><td><strong>Stalking</strong> involves a repeated pattern of following or monitoring someone that causes them to fear for their safety. <strong>Harassment</strong> is repeated unwanted communication or conduct that causes distress, but may not involve physical surveillance.</td></tr>
+        <tr><td><strong>Brandishing vs. Assault with a Deadly Weapon (ADW)</strong></td><td><strong>Brandishing</strong> is displaying a weapon in a threatening way without necessarily using it. <strong>ADW</strong> occurs when a person actively uses or threatens to use a deadly weapon to assault another person — a more serious charge.</td></tr>
+        <tr><td><strong>Public Intoxication vs. DUI</strong></td><td><strong>Public Intoxication</strong> is being visibly impaired by alcohol or drugs in a public space. <strong>DUI</strong> is operating a motor vehicle while impaired — significantly more serious due to the danger posed to others.</td></tr>
+        <tr><td><strong>Possession of Stolen Property vs. Possession of Contraband</strong></td><td><strong>Possession of Stolen Property</strong> means knowingly having items taken from another person or place unlawfully. <strong>Possession of Contraband</strong> refers to having items that are illegal to own regardless of how they were obtained.</td></tr>
+        <tr><td><strong>Vandalism vs. Malicious Mischief</strong></td><td><strong>Vandalism</strong> is the intentional destruction or defacement of property. <strong>Malicious Mischief</strong> is a broader term covering willful destruction of another's property — vandalism is often a subset of this charge.</td></tr>
+        <tr><td><strong>Tampering with Evidence vs. Obstruction of Justice</strong></td><td><strong>Tampering with Evidence</strong> is specifically altering, hiding, or destroying evidence related to a crime. <strong>Obstruction of Justice</strong> is a broader charge covering any act that interferes with the legal process or law enforcement operations.</td></tr>
+        <tr><td><strong>Reckless Endangerment vs. Assault</strong></td><td><strong>Reckless Endangerment</strong> is putting someone in danger of physical harm through reckless conduct — no contact is required. <strong>Assault</strong> involves a direct threat or attempt to cause harm to a specific person.</td></tr>
+        <tr><td><strong>Extortion vs. Coercion</strong></td><td><strong>Extortion</strong> is obtaining money, property, or services through threats or force. <strong>Coercion</strong> is compelling someone to act (or not act) through pressure or threats — not necessarily for personal gain.</td></tr>
+        <tr><td><strong>Unlawful Discharge vs. Felony Use of a Firearm</strong></td><td><strong>Unlawful Discharge</strong> is firing a weapon in a prohibited area or manner without lawful justification. <strong>Felony Use of a Firearm</strong> is using a weapon during the commission of a felony — a significant aggravating charge.</td></tr>
+        <tr><td><strong>Attempted Murder vs. Assault with Intent to Kill</strong></td><td><strong>Attempted Murder</strong> requires a direct act taken toward killing someone with clear intent to cause death. <strong>Assault with Intent to Kill</strong> involves an assault during which the intent to kill can be inferred — the distinction often comes down to how far the act progressed.</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="doc-footer">
+    <span>SASP / LSPD</span>
+    <span>APPENDIX A — SIMILAR CHARGES REFERENCE</span>
+    <span>OFFICIAL USE ONLY</span>
+  </div>
+</div>
+
+</div><!-- .page -->
+</body>
+</html>
